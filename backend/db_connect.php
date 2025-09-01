@@ -15,7 +15,7 @@ function connect () {
     try {
 
         $dsn = "mysql:host=localhost;dbname=yhc";
-        $user = "YHC";
+        $user = "root";
         $passwd = "";
 
         $pdo = new PDO($dsn, $user, $passwd);
@@ -30,7 +30,7 @@ function connect () {
 }
 
 // Séléctionner tous les éléments d'une table :
-function findAll ($pdo, $table) {
+function getAll ($pdo, $table) {
     $pdo = connect();
     try {
         $sql = "SELECT * FROM $table";
@@ -43,7 +43,7 @@ function findAll ($pdo, $table) {
 }
 
 // Séléctionner tous les éléments d'une table avec une jointure :
-function findAll2 ($pdo, $table) {
+function getAll2 ($pdo, $table) {
     $pdo = connect();
     try {
         $sql = "SELECT $table.*, c.nom AS nom_categorie FROM $table
