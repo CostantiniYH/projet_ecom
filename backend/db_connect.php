@@ -16,7 +16,7 @@ function connect () {
     try {
 
         $dsn = "mysql:host=localhost;dbname=yhc";
-        $user = "YHC";
+        $user = "root";
         $passwd = "";
 
         $pdo = new PDO($dsn, $user, $passwd);
