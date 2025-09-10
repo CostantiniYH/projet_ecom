@@ -7,8 +7,8 @@ $host = $_SERVER['HTTP_HOST'];
 if ($host === 'localhost' || $host === '127.0.0.1') {
     define('BASE_URL', $protocol . '://' . $host . '/projet_yhc/');
 } else {
-    define('BASE_URL', $protocol . '://ip publique:port/');
-    //define('BASE_URL', $protocol . '://ip privée:port/');
+    define('BASE_URL', $protocol . '://83.159.94.100:8090/');
+    //define('BASE_URL', $protocol . '://192.168.197.179:8090/');
 
 }
 
@@ -19,7 +19,7 @@ function connect () {
 
         $dsn = "mysql:host=localhost;dbname=yhc";
         $user = "root";
-        $passwd = "";
+        $passwd = "Yaacov2790.";
 
         $pdo = new PDO($dsn, $user, $passwd);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
