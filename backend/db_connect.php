@@ -17,7 +17,7 @@ function connect () {
 
         $dsn = "mysql:host=localhost;dbname=yhc";
         $user = "YHC";
-        $passwd = "Yaacov2790.";
+        $passwd = "";
 
         $pdo = new PDO($dsn, $user, $passwd);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
