@@ -100,8 +100,6 @@ function findBy ($pdo, $table, $champ, $id) {
     }
 }
 
-// Séléctionner une ou plusieurs données ($element) d'une table ($table)
-// en fonction d'une autre donnée ($id) d'une colonne ($champ):
 function findBy2 ($pdo, $element, $table, $champ, $id) {
     try {
         $sql = "SELECT $element FROM $table WHERE $champ = ?";
@@ -117,7 +115,6 @@ function findBy2 ($pdo, $element, $table, $champ, $id) {
     }
 }
 
-// Insérer une data dans la base :
 function insert ($pdo, $table, $data) {
     try {
         $column = implode(',', array_keys($data));
