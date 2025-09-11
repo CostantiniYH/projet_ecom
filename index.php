@@ -47,7 +47,7 @@ $navbar->render();
     <?php require_once __DIR__ . '/components/alerts.php'; ?>
 
     <h1 class="mb-5 shadow rounded-4 border-start border-end border-2 border-success">
-        Bienvenue sur || YHC ||ggggggggggggggggggggggggggggggggggggggggggggggggggg</h1>
+        Bienvenue sur || YHC ||</h1>
 
         
     <div class="carousel-container shadow mb-5 rounded-4" style="overflow: hidden; width: 100%; height: 20rem;"
