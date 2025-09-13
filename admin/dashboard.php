@@ -33,7 +33,7 @@ function produitDash($pdo) {
         echo "Erreur : " .$e->getMessage();
     }
 } 
-$produit = produitDash($pdo);
+$produits = produitDash($pdo);
 $image = getAll2($pdo, 't_images');
 
 if (!isset($_SESSION['user'])) {
@@ -196,44 +196,45 @@ $navbar->render();
                 </table>
             </div>
             <div class="mt-5 p-4 rounded-4 overflow-auto shadow border-start border-2 border-danger table-
-            responsive" style="max-height: 300px;">
+            responsive">
                 <h1 class="fs-2">Table produits</h1>
                 <table class="table mt-2 w-100">
+                    <?php
+                    if (!empty($produits) && isset($produits)) {
+                        $fields = array_keys($produits[0]);
+                        foreach ($fields as $field) {
+                            $label = preg_replace('/[^a-zA-Z0-9]/', ' ', $field);
+                    ?>                
                     <tr>
-                        <th>ID</th>
-                        <?php foreach ($produit as $row => $p) { ?> 
-                        <td><?= $p['id']; ?></td>
+                        <th><?= ucfirst($label)?></th>
+                        <?php foreach ($produits as $p) { ?>
+                        <td style="width: 550px;">
+                            <?php if ($field === 'image') { ?>
+                                <img width="100" src="<?= BASE_URL . $p[$field] ?>">
+                            <?php } else { ?>
+                                <?= $p[$field]; ?>
+                            <?php } ?>
+                        </td>
                         <?php } ?>
                     </tr>
+                    <?php } ?>
                     <tr>
-                        <th>Nom</th>
-                        <th>Prix</th>
-                        <th>Devise</th>
-                        <th>Quantité</th>
-                        <th>Description</th>
-                        <th>Catégorie</th>
-                        <th>Image</th>
-                        <th>User</th>
                         <th>Action</th>
+                        <?php foreach ($produits as $p) { ?>
+                        <td>
+                            <a href="<?= BASE_URL ?>produit_one.php?id=<?= $p['id']; ?>" 
+                                class="btn btn-primary bi bi-eye"></a>
+                            <a href="<?= BASE_URL ?>Form/Crud/produit.php?id=<?= $p['id']; ?>" 
+                                class="btn btn-warning bi bi-pencil"></a>
+                            <a href="<?= BASE_URL ?>controllers/Delete/produit.php?id=<?= $p['id']; ?>" 
+                            class="btn btn-danger bi bi-trash" onclick="return confirm('Voulez-vous vraiment supprimer cet article ?')"></a>
+                        </td>
+                        <?php } ?>
                     </tr>
+                    <?php } else { ?>
                         <tr>
-                            <td><?= $p['nom']; ?></td>
-                            <td><?= $p['prix']; ?></td>
-                            <td><?= $p['devise']; ?></td>
-                            <td><?= $p['quantite']; ?></td>
-                            <td><?= $p['description']; ?></td>
-                            <td><?= $p['nom_categorie']; ?></td>
-                            <td><img width="100" src="<?= BASE_URL . $p['image']; ?>"></td>
-                            <td><?= $p['id_user']; ?></td>
-                        <?php foreach ($produit as $row => $p) { ?> 
-
                             <td>
-                                <a href="<?= BASE_URL ?>produit_one.php?id=<?= $p['id']; ?>" 
-                                    class="btn btn-primary bi bi-eye"></a>
-                                <a href="<?= BASE_URL ?>Form/Crud/produit.php?id=<?= $p['id']; ?>" 
-                                    class="btn btn-warning bi bi-pencil"></a>
-                                <a href="<?= BASE_URL ?>controllers/Delete/produit.php?id=<?= $p['id']; ?>" 
-                                class="btn btn-danger bi bi-trash" onclick="return confirm('Voulez-vous vraiment supprimer cet article ?')"></a>
+                            <div class="alert alert-warning alert-dismissible fade show" data-bs-dismiss="3000" role="alert">Vous n'avez pas encore ajouté de produit</div>
                             </td>
                         </tr>
                     <?php } ?>
@@ -253,7 +254,7 @@ $navbar->render();
                         <tr>
                             <td><?= $i['id']; ?></td>
                             <td><?= $i['nom']; ?></td>
-                            <td><?= $i['image']; ?></td>
+                            <td><img width="100" src="<?= BASE_URL . $i['image']; ?>"></td>
                             <td><?= $i['nom_categorie']; ?></td>
                             <td>
                                 <a href="<?= BASE_URL ?>image.php?id=<?= $i['id']; ?>" 
