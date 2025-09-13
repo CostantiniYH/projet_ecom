@@ -11,8 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $prix = htmlspecialchars($_POST['prix']);
     $devise = htmlspecialchars($_POST['devise']);
     $quantite = htmlspecialchars($_POST['quantite']);
-    $categorie = htmlspecialchars($_POST['categorie']);
     $description = htmlspecialchars($_POST['description']);
+    $categorie = htmlspecialchars($_POST['categorie']);
+    $userId = htmlspecialchars($_POST['id_user']);
     
     $pdo = connect();
 
@@ -85,7 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'quantite' => $produit->getQuantite(),
         'description' => $produit->getDescription(),
         'id_categorie' => $produit->getCategorie(),
-        'image' => $imageUrl
+        'image' => $imageUrl,
+        'id_user' => $userId
     ];
 
     insert($pdo,'t_produits', $data);
