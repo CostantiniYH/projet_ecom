@@ -182,7 +182,7 @@ $navbar->render();
                         <tr>
                             <td><?= $c['id']; ?></td>
                             <td><?= $c['nom']; ?></td>
-                            <td><?= $c['image']; ?></td>
+                            <td><img width="100" src="<?= BASE_URL . $c['image']; ?>"></td>
                             <td>
                                 <a href="<?= BASE_URL ?>produits.php?id=<?= $c['id']; ?>" 
                                     class="btn btn-primary bi bi-eye"></a>
@@ -201,6 +201,11 @@ $navbar->render();
                 <table class="table mt-2 w-100">
                     <tr>
                         <th>ID</th>
+                        <?php foreach ($produit as $row => $p) { ?> 
+                        <td><?= $p['id']; ?></td>
+                        <?php } ?>
+                    </tr>
+                    <tr>
                         <th>Nom</th>
                         <th>Prix</th>
                         <th>Devise</th>
@@ -211,17 +216,17 @@ $navbar->render();
                         <th>User</th>
                         <th>Action</th>
                     </tr>
-                    <?php foreach ($produit as $row => $p) { ?> 
                         <tr>
-                            <td><?= $p['id']; ?></td>
                             <td><?= $p['nom']; ?></td>
                             <td><?= $p['prix']; ?></td>
                             <td><?= $p['devise']; ?></td>
                             <td><?= $p['quantite']; ?></td>
                             <td><?= $p['description']; ?></td>
                             <td><?= $p['nom_categorie']; ?></td>
-                            <td><?= $p['image']; ?></td>
-                            <td><?= $p['id']; ?></td>
+                            <td><img width="100" src="<?= BASE_URL . $p['image']; ?>"></td>
+                            <td><?= $p['id_user']; ?></td>
+                        <?php foreach ($produit as $row => $p) { ?> 
+
                             <td>
                                 <a href="<?= BASE_URL ?>produit_one.php?id=<?= $p['id']; ?>" 
                                     class="btn btn-primary bi bi-eye"></a>

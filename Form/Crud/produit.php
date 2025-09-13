@@ -54,6 +54,7 @@ $navbar->render() ;
                 <h2 class="text-center">Ajouter un produit</h2>
             <?php } ?>
             <div class="form-group m-4">
+                <input type="hidden" name="id_user" value="<?= htmlspecialchars($_SESSION['user']['id'])?>">
                 <input type="hidden" name="id" value="<?= htmlspecialchars($produit['id'] ?? '') ?>">
                 <label for="nom" class="mb-2">Nom</label>
                 <input value="<?= $id ? htmlspecialchars($produit['nom']) : '' ?>" type="text" class="form-control" id="nom" name="nom"
