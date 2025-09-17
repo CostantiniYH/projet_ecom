@@ -114,59 +114,33 @@ $navbar->render();
                 <table class="table mt-2 w-100">
                     <tr>
                         <th>ID</th>
-                        <?php foreach ($user as $key => $u) { ?>
-                            <td> <?= $u['id'] ?></td>
-                        <?php } ?>
-                    </tr>
-                    <tr>
                         <th>Nom</th>
-                        <?php foreach ($user as $key => $u) { ?> 
-                            <td> <?= $u['nom']?> </td>
-                        <?php } ?>
-                    </tr>
-                    <tr>
                         <th>Prénom</th>
-                        <?php foreach ($user as $key => $u) { ?> 
-                            <td> <?= $u['prenom']?> </td>
-                        <?php } ?>
-                    </tr>
-                    <tr>
                         <th>Email</th>
-                        <?php foreach ($user as $key => $u) { ?> 
-                            <td> <?= $u['email']; ?> </td>
-                        <?php } ?>
-                    </tr>
-                    <tr>                        
                         <th>Téléphone</th>
-                        <?php foreach ($user as $key => $u) { ?> 
-                            <td> <?= $u['telephone']; ?> </td>
-                        <?php } ?>
-                    </tr>
-                    <tr>                        
                         <th>Société</th>  
-                        <?php foreach ($user as $key => $u) { ?> 
-                            <td> <?= $u['societe']; ?> </td>
-                        <?php } ?>
-                    </tr>
-                    <tr>
                         <th>Photo profil</th> 
-                        <?php foreach ($user as $key => $u) { ?> 
-                            <td> <img width="100" src="<?= BASE_URL . $u['photo']; ?>"></td>
-                        <?php } ?>
-                    </tr>
-                    <tr>                        
                         <th>Action</th>
-                        <?php foreach ($user as $key => $u) { ?> 
+                    </tr>
+                    <?php foreach ($user as $key => $u) { ?> 
+                        <tr>                        
+                            <td> <?= $u['id'] ?></td>
+                            <td> <?= $u['nom']?> </td>
+                            <td> <?= $u['prenom']?> </td>
+                            <td> <?= $u['email']; ?> </td>
+                            <td> <?= $u['telephone']; ?> </td>
+                            <td> <?= $u['societe']; ?> </td>
+                            <td> <img width="100" src="<?= BASE_URL . $u['photo']; ?>"></td>
                             <td>
                                 <a href="#.php?id=<?= $u['id']; ?>" 
-                                    class="btn btn-primary bi bi-eye"></a>
+                                class="btn btn-primary bi bi-eye"></a>
                                 <a href="<?= BASE_URL ?>Form/Compte/register.php?id=<?= $u['id']; ?>" 
-                                    class="btn btn-warning bi bi-pencil"></a>
+                                class="btn btn-warning bi bi-pencil"></a>
                                 <a href="<?= BASE_URL ?>Controllers/Delete/user.php?id=<?= $u['id']; ?>" 
                                 class="btn btn-danger bi bi-trash" onclick="return confirm('Voulez-vous vraiment supprimer cet article ?')"></a>
                             </td>
-                        <?php } ?>
-                    </tr>
+                        </tr>
+                    <?php } ?>
                 </table>
             </div>
             <div class=" h-50  mt-5 p-4 rounded-4 shadow  border-start border-2 border-danger table-responsive">
