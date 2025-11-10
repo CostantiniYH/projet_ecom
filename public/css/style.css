@@ -164,7 +164,9 @@ h1, h2 {
     font-size: 0.8rem;
   }
 
-
+.border-blue {
+    border: 2px solid rgb(45, 104, 125);
+}
 /* Footer */
 footer {
     position: -webkit-sticky;
