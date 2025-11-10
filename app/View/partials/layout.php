@@ -19,10 +19,15 @@
     ?>
 </head>
 <body>             
-    <?php require_once __DIR__ . '/header.php'; ?>
+    <header>
+        <?php
+        $navbar->render(); 
+        
+        require_once __DIR__ . '/../components/alerts.php'; ?>
+    </header>
 
     <div class="container mt-5 mb-5">
-        <?= $content ?>
+        <?= $content ?? '' ;?>
     </div>
     
 
