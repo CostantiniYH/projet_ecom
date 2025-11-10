@@ -28,6 +28,11 @@ switch ($uri) {
         $controller->index();
         break;
     
+    case '/panier':
+        $controller = new App\Controllers\PanierController();
+        $controller->index();
+        break;    
+    
     case '/login':
         $controller = new App\Controllers\AuthController();
         $controller->login();
