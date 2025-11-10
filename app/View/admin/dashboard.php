@@ -11,8 +11,8 @@ if (isAdmin()) {
 //echo "<pre>";
 //print_r($_SESSION);
 //echo "</pre>";
-
-$pdo = connect();
+use APP\Config\Database;
+$pdo = Database::connect();
 
 $user = getAll($pdo, 't_users');
 $categorie = getAll($pdo, 't_categories');

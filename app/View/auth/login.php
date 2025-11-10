@@ -1,6 +1,6 @@
 
-    <form action="<?= BASE_URL ?>controllers/Compte/login.php" method="post" class="p-5 col-md-6 mx-auto m-5  shadow-lg rounded-4 
-    border border-1 border-success">
+    <form action="user/login-submit" method="post" class="p-5 col-md-6 mx-auto m-5  shadow-lg rounded-4 
+    border-blue">
         <h2 class="text-center">Connexion</h2>
         <div class="form-group mb-2">
             <label for="email">Email :</label>

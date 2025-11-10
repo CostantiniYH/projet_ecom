@@ -1,6 +1,6 @@
 <div class="container mt-5 mb-5">
     <form action="<?= BASE_URL ?>controllers/Compte/register.php" method="post" class="p-5 col-md-6 mb-5 shadow-lg
-    rounded-4 border border-1 border-success mx-auto" enctype="multipart/form-data">
+    rounded-3 border-blue mx-auto" enctype="multipart/form-data">
         <h2 class="text-center"><?= $user ? 'Modifier votre profil' : 'Inscription' ?></h2>
         <div class="form-group mb-2">
             <label for="prenom">Prénom :</label>

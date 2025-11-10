@@ -1,6 +1,9 @@
 <?php
-require_once __DIR__ . '/../../controllers/session.php';
-require_once __DIR__ . '/../../class/user.php';
+//require_once __DIR__ . '/../../controllers/session.php';
+//require_once __DIR__ . '/../../class/user.php';
+
+use App\Classes\User;
+use App\Config\Database;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -10,12 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$pdo = connect();
+$pdo = Database::connect();
 
 $value = findBy2( $pdo, '*', 't_users', 'email', $email);
-
-//var_dump($value);
-//exit();
 
 if (is_array($value) && count($value) == 0) {
     header('Location: ' . BASE_URL . 'Form/Compte/login.php?erreur=L\'utilisateur n\'existe pas.');
