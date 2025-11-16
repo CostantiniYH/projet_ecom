@@ -2,7 +2,7 @@
 //require_once __DIR__ . '/../../controllers/session.php';
 //require_once __DIR__ . '/../../class/user.php';
 
-use App\classes\User;
+use App\Classes\User;
 use App\Config\Database;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
