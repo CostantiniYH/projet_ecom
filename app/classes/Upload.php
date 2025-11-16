@@ -1,5 +1,5 @@
 <?php
-namespace App\Classes;
+namespace App\classes;
 class Upload {
     private $file;
     private $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif', 'bmp', 'pdf');

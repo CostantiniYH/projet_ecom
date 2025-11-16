@@ -1,5 +1,5 @@
 <?php
-namespace App\Classes;
+namespace App\classes;
 
 class Carousel {
     private function Image($array) {
