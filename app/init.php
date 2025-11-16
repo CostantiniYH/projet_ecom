@@ -1,8 +1,4 @@
 <?php
-require_once __DIR__ . '/core/session.php';
-require_once __DIR__ . '/Models/user.php';
-require __DIR__ . '/core/navbarBuilder.php';
-
 spl_autoload_register(function ($class) {
     $prefix = 'App\\';
     $base_dir = __DIR__ . '/';
