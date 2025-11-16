@@ -17,7 +17,7 @@ spl_autoload_register(function ($class) {
     }
 });
 
-
+require_once __DIR__ . '/../core/navbarBuilder.php';
 $configFile = __DIR__ . '/config/database.php';
 if (file_exists($configFile)) {
     require_once $configFile;
