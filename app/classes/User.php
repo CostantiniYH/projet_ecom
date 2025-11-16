@@ -1,5 +1,5 @@
 <?php 
-namespace App\classes;
+namespace App\Classes;
 use App\Config\Database;
 class User {
     private $nom;

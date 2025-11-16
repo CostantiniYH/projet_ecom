@@ -1,7 +1,7 @@
 <!--
 
-Liste des classes Bootstrap
-Bootstrap est un framework CSS populaire qui fournit une multitude de classes utilitaires pour le design et la mise en page. Voici une liste non exhaustive des classes Bootstrap les plus couramment utilisées :
+Liste des Classes Bootstrap
+Bootstrap est un framework CSS populaire qui fournit une multitude de Classes utilitaires pour le design et la mise en page. Voici une liste non exhaustive des Classes Bootstrap les plus couramment utilisées :
 
 Mise en page (Grid System)
 ----------------------------------
@@ -67,8 +67,8 @@ Composants
 
 <!--
 
-Liste des classes AOS (Animate On Scroll)
-AOS est une bibliothèque qui permet d'ajouter des animations lorsque les éléments entrent dans la vue. Voici une liste des classes AOS les plus couramment utilisées :
+Liste des Classes AOS (Animate On Scroll)
+AOS est une bibliothèque qui permet d'ajouter des animations lorsque les éléments entrent dans la vue. Voici une liste des Classes AOS les plus couramment utilisées :
 
 Animations
 -----------------------------------
