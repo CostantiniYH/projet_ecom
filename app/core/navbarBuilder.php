@@ -1,5 +1,5 @@
 <?php
-use App\Classes\Navbar;
+use App\classes\Navbar;
 
 function buildNavbar($currentPage = '') {
 
