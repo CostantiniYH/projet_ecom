@@ -6,7 +6,6 @@ if (!isAdmin()) {
 }
 
 
-$pdo = connect();
 $categories = getAll($pdo, 't_categories');
 
 
