@@ -1,6 +1,6 @@
 <div class="container mb-5 mt-5" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1000">
     <h1 class="mb-5 shadow rounded-4 border-start border-end border-2 border-success">
-        Bienvenue sur || YHC ||</h1>
+        Bienvenue sur || YHC Marketplace||</h1>
         
     <div class="carousel-container shadow mb-5 rounded-4" style="overflow: hidden; width: 100%; height: 20rem;"
      data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
