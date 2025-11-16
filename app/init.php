@@ -1,4 +1,5 @@
 <?php
+
 spl_autoload_register(function ($class) {
     $prefix = 'App\\';
     $base_dir = __DIR__ . '/';
