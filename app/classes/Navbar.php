@@ -1,5 +1,5 @@
 <?php
-namespace App\classes;
+namespace app\classes;
 class Navbar {
     private $leftItems = [];  
     private $centerItems = [];
