@@ -5,7 +5,7 @@ use App\Config\Database;
 
 class HomeController {
     public function index() {
-        $navbar = buildNavbar('home');
+        //$navbar = buildNavbar('home');
 
         $pdo = Database::connect();        
         $categories = getAll ($pdo, 't_categories');                
