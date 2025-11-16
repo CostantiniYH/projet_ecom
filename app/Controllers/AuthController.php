@@ -3,7 +3,7 @@ namespace App\Controllers;
 use App\Config\Database;
 use PDO;
 use Exception;
-use App\classes\User;
+use App\Classes\User;
 
 
 class AuthController {

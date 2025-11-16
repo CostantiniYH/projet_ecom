@@ -1,5 +1,5 @@
 <?php
-namespace App\classes;
+namespace App\Classes;
 class Produit {
     private $nom;
     private $prix;

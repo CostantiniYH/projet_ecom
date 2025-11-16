@@ -1,5 +1,5 @@
 <?php
-namespace app\classes;
+namespace app\Classes;
 class Navbar {
     private $leftItems = [];  
     private $centerItems = [];
@@ -87,7 +87,7 @@ class Navbar {
             echo '<li class="navbar-item ' . $activeClass . '" data-aos="flip-up" data-aos-delay="500" data-aos-duration="1000">';
             
             // Vérifier si un onclick est défini
-            // Et des classes aux liens
+            // Et des Classes aux liens
             $itemClass = $item['class'];
             if ($item['onclick']) {
                 echo '<a class="p-2 rounded-5 ' . $itemClass .'" href="#" onclick="' . htmlspecialchars($item['onclick']) . '">' . $item['name'] . '</a>';
