@@ -1,9 +1,9 @@
 <?php
-use App\Classes\Navbar;
+use App\classes\Navbar;
 
 function buildNavbar($currentPage = '') {
 
-    $navbar = new App\Classes\Navbar();
+    $navbar = new Navbar();
     $navbar->AddItem('|| YHC ||', '', 'left', '', '');
 
     if (isLoggedIn()) {

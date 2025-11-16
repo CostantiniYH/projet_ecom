@@ -5,7 +5,7 @@
     <div class="carousel-container shadow mb-5 rounded-4" style="overflow: hidden; width: 100%; height: 20rem;"
      data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
         <?php
-            $carousel = new App\Classes\Carousel;
+            $carousel = new App\classes\Carousel;
             $carousel->Read($a, 1);
         ?>
     </div>            
@@ -31,7 +31,7 @@
         <div class="mb-5 img-map img-index rounded-4" style="height: 300px; overflow: hidden;" data-aos="flip-up" data-aos-duration="1500" data-aos-delay="500">
             <div class="card-img-top card-img shadow">
                 <?php
-                    $carousel = new App\Classes\Carousel;
+                    $carousel = new App\classes\Carousel;
                     $carousel->Read($a, 2);
                 ?>
             </div>
