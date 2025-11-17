@@ -14,5 +14,5 @@ if ($base !== '' && strpos($uri, $base) === 0) {
 }
 $uri = $uri ?: '/';
 
-require_once __DIR__ . '/../app/routes.php';
+require_once __DIR__ . '/../app/routes/routes.php';
 ?>
