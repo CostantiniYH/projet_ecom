@@ -1,6 +1,7 @@
 <?php
 require_login();
 
+use App\Config\Database;
 $pdo = Database::connect();
 
 if (!isset($_SESSION['user'])) {
