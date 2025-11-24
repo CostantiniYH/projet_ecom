@@ -5,7 +5,8 @@ if (isLoggedIn()) {
     echo "Vous êtes connecté";
 }
 
-$pdo = connect();
+use App\Config\Database;
+$pdo = Database::connect();
 $categories = getAll($pdo, 't_categories');
 $images = getAll($pdo, 't_images');
 
