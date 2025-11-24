@@ -35,14 +35,14 @@ class AuthController {
         if (User::verifyPassword($password, $password_hash)) {
             loginUser($value);
             if (isAdmin()) {
-                header('Location: admin/dashboard?success=Vous êtes connecté en tant qu\'administrateur.');
-                exit();
+                header('Location: /admin/dashboard?success=Vous êtes connecté en tant qu\'administrateur.');
+                exit;
             } 
-            header ('Location: user/dashboard?success=Connexion réussi !');
-            exit();
+            header ('Location: /user/dashboard?success=Connexion réussi !');
+            exit;
         } else {
             header('Location: /login?erreur=Le mot de passe est incorrecte !');
-            exit();
+            exit;
         }
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 // Séléctionner tous les éléments d'une table :
 function getAll ($pdo, $table) {
     try {

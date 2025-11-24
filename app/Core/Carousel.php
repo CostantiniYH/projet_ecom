@@ -8,7 +8,7 @@ class Carousel {
             $html .= '
                 <div class="carousel-item ' . ($key == 0 ? 'active' : '') . '">
                     <img loading="lazy" src="' . htmlspecialchars($a['link']) . '" 
-                    class="d-block w-100 img-carousel rounded-4" alt="..." usemap="#map' . htmlspecialchars($a['id']) . '">
+                    class="d-block w-100 img-carousel" alt="..." usemap="#map' . htmlspecialchars($a['id']) . '">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>' . htmlspecialchars($a['text']) . '</h5>
                     </div>
