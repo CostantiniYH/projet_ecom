@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Config\Database;
+use App\Views\Components\Carousel;
 
 class HomeController {
     public function index() {
@@ -17,18 +18,18 @@ class HomeController {
                 $text = ucwords(str_replace(['_', '-', '.'], ' ', $fileName));
                 $a[] = [
                     'link' => $file,
-                    'text' => $text,
+                    'text' => '',
                     'id' => $categorie['id']
                 ];
             }
         }
-        
+
         $titre = "Accueil";
 
         ob_start(); 
-        require_once __DIR__ . '/../View/home.php';       
+        require_once __DIR__ . '/../Views/home.php';       
         $content = ob_get_clean();
 
-        require_once __DIR__ . '/../View/partials/layout.php';
+        require_once __DIR__ . '/../Views/partials/layout.php';
     }
 }

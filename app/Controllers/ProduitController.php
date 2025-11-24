@@ -6,7 +6,7 @@ use PDO;
 use PDOException;
 
 class ProduitController {
-    public function index() {
+    public function liste_produits() {
         $navbar = buildNavbar('produits');
 
         $id = $_GET['id'] ?? null;
@@ -17,25 +17,26 @@ class ProduitController {
         $titre = "Produits";
 
         ob_start(); 
-        require_once __DIR__ . '/../View/produits.php';
+        require_once __DIR__ . '/../Views/produits.php';
         $content = ob_get_clean();
 
-        require_once __DIR__ . '/../View/partials/layout.php';
+        require_once __DIR__ . '/../Views/partials/layout.php';
     }
 
-    public function show($id) {
-        $navbar = buildNavbar('produits');
+    public function detail_produit() {
+        $navbar = buildNavbar('détail_produits');
         $pdo = Database::connect();
+        $id = $_GET['id'];
         $one = findBy ($pdo, 't_produits', 'id', $id); 
         $one = $one[0];
         
         $titre = "Détails du produit";
 
         ob_start(); 
-        require_once __DIR__ . '/../View/produit_one.php';
+        require_once __DIR__ . '/../Views/produit_one.php';
         $content = ob_get_clean();
 
-        require_once __DIR__ . '/../View/partials/layout.php';
+        require_once __DIR__ . '/../Views/partials/layout.php';
     }
 }
 

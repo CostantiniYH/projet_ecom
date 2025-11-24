@@ -1,7 +1,6 @@
 <?php
 require_login();
 
-$pdo = connect();
 $categories = getAll($pdo, 't_categories');
 $produits = getAllWhere($pdo, 't_produits', 'deleted_at IS NULL AND quantite > ?', 0);
 

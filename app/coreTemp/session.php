@@ -33,14 +33,14 @@ function loginUser($user) {
 
 function require_login() {
     if (!isLoggedIn()) {
-        header('Location: ' . BASE_URL . 'login?=message=Veuillez vous connecter.');
+        header('Location: /login?=message=Veuillez vous connecter.');
         exit();
     }
 }
 function logoutUser() {
     session_destroy();
     setcookie(session_name(), '', time() - 3600, '/');
-    header('Location: ' . BASE_URL . '?succes=Vous vous êtes déconnecté avec succès.');
+    header('Location: ?succes=Vous vous êtes déconnecté avec succès.');
     exit();
 }
 ?>

@@ -14,8 +14,8 @@ class ImageController {
         $image = getAll($pdo, 't_images');
         
         ob_start();
-        require_once __DIR__ . '/../View/image.php';
+        require_once __DIR__ . '/../Views/image.php';
         $content = ob_get_clean();
-        require_once __DIR__ . '/../View/partials/layout.php';
+        require_once __DIR__ . '/../Views/partials/layout.php';
     }
 }
