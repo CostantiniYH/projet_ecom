@@ -45,7 +45,7 @@ class Navbar {
 
     // Générer la navbar avec les sections
     public function render() {
-        echo '<nav class="navbar navbar-expand-lg shadow mb-5"  data-aos="fade-down" data-aos-duration="1000">';
+        echo '<nav class="navbar navbar-expand-lg shadow"  data-aos="fade-down" data-aos-duration="1000">';
 
                 echo '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">';
                     echo '<span class="navbar-toggler-icon"></span>';

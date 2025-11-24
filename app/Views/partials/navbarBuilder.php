@@ -4,7 +4,7 @@ use App\Core\Navbar;
 function buildNavbar($currentPage = '') {
 
     $navbar = new Navbar();
-    $navbar->AddItem('|| YHC ||', '', 'left', '', '');
+    $navbar->AddItem('e-com YHC', '', 'left', '', '');
 
     if (isLoggedIn()) {
         $navbar->AddItem('','', 'center', $currentPage === 'home', 'bi bi-house-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Accueil');
@@ -14,13 +14,13 @@ function buildNavbar($currentPage = '') {
         if (isAdmin()) {
             $navbar->AddItem('', 'admin/dashboard', 'center', '', 'bi bi-motherboard" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Tableau admin');
         }
-        $navbar->AddItem('', 'compte/dashboard', 'center', '', 'bi bi-kanban" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Tableau de bord');
+        $navbar->AddItem('', 'user/dashboard', 'center', '', 'bi bi-kanban" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Tableau de bord');
         $navbar->AddItem('', 'admin/categorie', 'center', '', 'bi bi-grid-3x3-gap-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Gestion des catégories');   
         $navbar->AddItem('', 'admin/produit', 'center', '', 'bi bi-box-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Ajouter un produit');
         $navbar->AddItem('', 'admin/image', 'center', '', 'bi bi-image" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Ajouter une image');
-        $navbar->AddItem('', 'compte/panier', 'right', '', 'bi bi-cart3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-right" title="Panier');
+        $navbar->AddItem('', 'user/panier', 'right', '', 'bi bi-cart3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-right" title="Panier');
 
-        $navbar->AddItem('', 'javascript:location.replace(BASE_URL + "logout")', 'right', '', 'bi bi-door-open-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-red" title="Déconnexion');
+        $navbar->AddItem('', 'javascript:location.replace("/logout")', 'right', '', 'bi bi-door-open-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-red" title="Déconnexion');
     } else {
         $navbar->AddItem('','', 'center', $currentPage === 'home', 'bi bi-house-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Accueil');
         $navbar->AddItem('Catégories', 'categories', 'center', $currentPage === 'categories', '');   
@@ -29,7 +29,7 @@ function buildNavbar($currentPage = '') {
         $navbar->AddItem('', 'addCategorie', 'dropdown', '', 'bi bi-grid-3x3-gap-fill');   
         $navbar->AddItem('', 'addProduit', 'dropdown', '', 'bi bi-box-fill');
         $navbar->AddItem('', 'addImage', 'dropdown', '', 'bi bi-image');
-        $navbar->AddItem('', 'compte/panier', 'right', '', 'bi bi-cart3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-right" title="Panier');
+        $navbar->AddItem('', 'user/panier', 'right', '', 'bi bi-cart3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-right" title="Panier');
 
         $navbar->AddItem('', 'login', 'right', '', 'bi bi-person-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-right" title="Connexion');
         $navbar->AddItem('Inscription', 'register', 'right', '', '');
@@ -39,7 +39,7 @@ function buildNavbar($currentPage = '') {
 
 function authNavbar($currentPage = '') {
     $navbar = new Navbar();
-    $navbar->AddItem('|| YHC ||','', 'left', '', '');
+    $navbar->AddItem('e-com YHC','', 'left', '', '');
     $navbar->AddItem('','', 'center', $currentPage === 'home', 'bi bi-house-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Accueil');
     if ($currentPage === 'register') {
         $navbar->AddItem('','login','right', $currentPage === 'login', 'bi bi-person-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-right" title="Connexion');

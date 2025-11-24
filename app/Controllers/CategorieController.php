@@ -6,6 +6,11 @@ use PDO;
 use PDOException;
 
 class CategorieController {
+    private $pdo;
+    public function __construct($pdo)
+    {
+        $this->pdo = $pdo;
+    }
     public function index() {
         $navbar = buildNavbar('categories');
         $titre = "Catégories";

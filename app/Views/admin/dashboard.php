@@ -4,7 +4,7 @@ require_login();
 if (isAdmin()) {
     getUserSession();
     } else {
-    header('Location: ' . BASE_URL . 'index.php?erreur=L\'accès est restraint.');
+    header('Location: ?erreur=L\'accès est restraint.');
     exit();
 }
 
@@ -14,8 +14,6 @@ if (isAdmin()) {
 use APP\Config\Database;
 $pdo = Database::connect();
 
-$user = getAll($pdo, 't_users');
-$categorie = getAll($pdo, 't_categories');
 
 function produitDash($pdo) {
     try {
