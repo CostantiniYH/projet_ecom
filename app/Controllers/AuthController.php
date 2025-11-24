@@ -1,12 +1,15 @@
 <?php
 namespace App\Controllers;
-use App\Config\Database;
-use App\Models\Classes\User;
-use PDO;
-use Exception;
+use App\Models\Entites\User;
 
 
-class AuthController {
+class AuthController 
+{
+    private $pdo;
+    public function __construct($pdo)
+    {
+        $this->pdo = $pdo;
+    }
     public function login() {
         $navbar = authNavbar('login');
 
@@ -21,9 +24,7 @@ class AuthController {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $pdo = Database::connect();
-
-        $value = findBy2( $pdo, '*', 't_users', 'email', $email);
+        $value = findBy2( $this->pdo, '*', 't_users', 'email', $email);
 
         if (is_array($value) && count($value) == 0) {
             header('Location: /login?erreur=L\'utilisateur n\'existe pas.');
@@ -35,10 +36,10 @@ class AuthController {
         if (User::verifyPassword($password, $password_hash)) {
             loginUser($value);
             if (isAdmin()) {
-                header('Location: /admin/dashboard?success=Vous êtes connecté en tant qu\'administrateur.');
+                header('Location: /dashboard_admin?success=Vous êtes connecté en tant qu\'administrateur.');
                 exit;
             } 
-            header ('Location: /user/dashboard?success=Connexion réussi !');
+            header ('Location: /dashboard?success=Connexion réussi !');
             exit;
         } else {
             header('Location: /login?erreur=Le mot de passe est incorrecte !');
@@ -53,10 +54,9 @@ class AuthController {
 
         $id = isset($_GET['id']) ? intval($_GET['id']) : null;
 
-        $pdo = Database::connect();
         $user = null;
         if ($id) {
-            $user = findBy1 ($pdo, 't_users', 'id', $id);
+            $user = findBy1 ($this->pdo, 't_users', 'id', $id);
             $user = $user[0] ?? null;
         }
 
