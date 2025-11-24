@@ -17,9 +17,11 @@ spl_autoload_register(function ($class) {
     }
 });
 
-require_once __DIR__ . '/core/navbarBuilder.php';
-require_once __DIR__ . '/core/session.php';
-require_once __DIR__ . '/Models/user.php';
+require_once __DIR__ . '/coreTemp/session.php';
+require_once __DIR__ . '/Models/model.php';
+require_once __DIR__ . '/Views/partials/navbarBuilder.php'; 
+
+
 $configFile = __DIR__ . '/config/database.php';
 if (file_exists($configFile)) {
     require_once $configFile;

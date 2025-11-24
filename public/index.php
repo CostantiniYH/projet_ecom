@@ -14,5 +14,16 @@ if ($base !== '' && strpos($uri, $base) === 0) {
 }
 $uri = $uri ?: '/';
 
-require_once __DIR__ . '/../app/routes/routes.php';
+require_once __DIR__ . '/../app/routes/web.php';
+require_once __DIR__ . '/../app/routes/auth.php';
+require_once __DIR__ . '/../app/routes/user.php';
+require_once __DIR__ . '/../app/routes/admin.php';
+
+use App\Core\Router;
+use App\Config\Database;
+
+$pdo = Database::connect();
+$router = new Router($pdo);
+$router->run();
+
 ?>

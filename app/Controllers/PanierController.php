@@ -11,9 +11,9 @@ class PanierController {
         $titre = "Mon Panier";
 
         ob_start(); 
-        require_once __DIR__ . '/../View/panier.html';
+        require_once __DIR__ . '/../Views/panier.html';
         $content = ob_get_clean();
 
-        require_once __DIR__ . '/../View/partials/layout.php';
+        require_once __DIR__ . '/../Views/partials/layout.php';
     }
 }
