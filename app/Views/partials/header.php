@@ -27,7 +27,7 @@
         <div class="carousel-container shadow mb-5 rounded-4 position-relative" style="overflow: hidden; width: 100%; height: 20rem;"
         data-aos="zoom-in" data-aos-duration="1000">
             <?php
-                $carousel = new App\Views\Components\Carousel;
+                $carousel = new App\Core\Carousel;
                 $carousel->Read($a, 1);
             ?>
             <h1 class="position-absolute top-50 start-50 translate-middle w-100 h-100 shadow rounded-4 bg-dark bg-opacity-50 text-white">
