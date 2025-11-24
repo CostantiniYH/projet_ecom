@@ -1,20 +1,3 @@
-<?php
-require_login();
-
-use App\Config\Database;
-$pdo = Database::connect();
-
-if (!isset($_SESSION['user'])) {
-    die("Erreur : utilisateur non connecté.");
-} 
-
-$user = $_SESSION['user'];
-$id = $_SESSION['user']['id'];
-$myProduits = findBy($pdo, 't_produits', 'id_user', $id);
-$myImage = findBy($pdo, 't_images', 'id_user', $id);
-ob_start();
-?>
-
 <div class="container mt-2">
     <p class="mt-2 border border-2 border-success p-3 rounded mb-3">Vous êtes connecté en tant que <?= $user['email']; ?></p>
     <h1 class="shadow rounded p-4">Dashboard <?= $user['nom']; ?> <?= $user['prenom']; ?></h1>
@@ -113,8 +96,4 @@ ob_start();
             </table>
         </div>
     </div>
-<?php 
-$content = ob_get_clean(); 
-$titre = "Tableau de bord";
-require_once __DIR__ . '/partials/layout.php';
-?>      
+</div>

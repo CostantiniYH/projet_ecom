@@ -24,20 +24,20 @@
     ?>
 
     <?php if ($currentPage === 'home' || $currentPage === 'accueil'): ?>
-        <div class="carousel-container shadow mb-5 rounded-4 position-relative" style="overflow: hidden; width: 100%; height: 20rem;"
+        <div class="carousel-container shadow position-relative rounded-bottom-5" style=" overflow: hidden; width: 100%; height: 20rem;"
         data-aos="zoom-in" data-aos-duration="1000">
             <?php
                 $carousel = new App\Core\Carousel;
                 $carousel->Read($a, 1);
             ?>
-            <h1 class="position-absolute top-50 start-50 translate-middle w-100 h-100 shadow rounded-4 bg-dark bg-opacity-50 text-white">
+            <h1 class="position-absolute top-50 start-50 translate-middle w-100 h-100 shadow rounded-bottom-5 bg-dark bg-opacity-50 text-white">
                 Bienvenue <br>sur <br>YHC Marketplace</h1>
         </div>  
     <?php endif; ?>
 
-    <?php require_once __DIR__ . '/../components/alerts.php'; ?>
+    <?php require __DIR__ . '/../components/alerts.php'; ?>
             
-    <p class="container">
+    <p class="container mt-5">
         <a class="text-dark" href="<?= BASE_URL ?>">Accueil</a>
         <?php if ($currentPage !== 'accueil') : ?>
             / <?= $currentPageLabel ?>
