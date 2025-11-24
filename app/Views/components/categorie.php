@@ -1,7 +1,7 @@
 <div class="rounded-4 shadow text-center card border-0 hvr-shadow-radial w-100">
     <div class="card-img-top card-img rounded-top" style="height: 150px; overflow: hidden;">
         <?php
-        $carousel = new App\Classes\Carousel();
+        $carousel = new App\Views\Components\Carousel();
 
             $a = [];
 

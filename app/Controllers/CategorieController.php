@@ -27,8 +27,8 @@ class CategorieController {
     }
         $categories = getAllCategoriesWithProductCount();
         ob_start();
-        require_once __DIR__ . '/../View/categories.php';
+        require_once __DIR__ . '/../Views/categories.php';
         $content = ob_get_clean();
-        require_once __DIR__ . '/../View/partials/layout.php';
+        require_once __DIR__ . '/../Views/partials/layout.php';
     }
 }
