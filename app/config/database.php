@@ -20,7 +20,7 @@ class Database {
         try {
             $dsn = "mysql:host=localhost;dbname=yhc";
             $user = "root";
-            $passwd = 'P@$$w0rd';
+            $passwd = '';
 
             $pdo = new PDO($dsn, $user, $passwd);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
