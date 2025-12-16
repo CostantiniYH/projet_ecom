@@ -6,7 +6,7 @@ if (!defined('BASE_URL')) {
         $host = $_SERVER['HTTP_HOST'];
 
        if ($host === 'localhost' || $host === '127.0.0.1') {
-        define('BASE_URL', $protocol . '://' . $host . '/projet_yhc/public/');
+        define('BASE_URL', $protocol . '://' . $host . '/projet_ecom/public/');
         } else {
             define('BASE_URL', $protocol . '://' . $host . '/');
         }
@@ -18,7 +18,7 @@ use Exception;
 class Database {
     public static function connect () {
         try {
-            $dsn = "mysql:host=localhost;dbname=yhc";
+            $dsn = "mysql:host=localhost;dbname=db_ecom";
             $user = "root";
             $passwd = '';
 

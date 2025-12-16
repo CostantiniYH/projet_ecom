@@ -37,7 +37,7 @@ class Router
             list($controllerPath, $method) = explode('@', $handler);
             $controllerClass = 'App\\Controllers\\' . str_replace('/', '\\', $controllerPath);
             $controllerObj = new $controllerClass($this->pdo);
-            $controllerObj->$method();
+            $controllerObj->$method($this->pdo);
         }
 
         if (is_callable($handler)) {

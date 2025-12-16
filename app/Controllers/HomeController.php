@@ -5,10 +5,9 @@ use App\Config\Database;
 use App\Views\Components\Carousel;
 
 class HomeController {
-    public function index() {
+    public function index($pdo) {
         $navbar = buildNavbar('home');
-
-        $pdo = Database::connect();        
+        
         $categories = getAll ($pdo, 't_categories');                
         $a = [];        
         foreach ($categories as $categorie) {

@@ -44,7 +44,7 @@ if ($token !== $secretKey) {
 unset($_SESSION['csrf_token']);
 
 $gitPath = escapeshellarg('C:\Program Files\Git\bin\git.exe');
-$projectDir = escapeshellarg('C:\wamp64\www\projet_yhc');
+$projectDir = escapeshellarg('C:\wamp64\www\projet_ecom');
 
 $output = [];
 $success = true;

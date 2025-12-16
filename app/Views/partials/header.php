@@ -27,11 +27,11 @@
         <div class="carousel-container shadow position-relative rounded-bottom-5" style=" overflow: hidden; width: 100%; height: 20rem;"
         data-aos="zoom-in" data-aos-duration="1000">
             <?php
-                $carousel = new App\Core\Carousel;
+                $carousel = new App\Views\Components\Carousel;
                 $carousel->Read($a, 1);
             ?>
             <h1 class="position-absolute top-50 start-50 translate-middle w-100 h-100 shadow rounded-bottom-5 bg-dark bg-opacity-50 text-white">
-                Bienvenue <br>sur <br>YHC Marketplace</h1>
+                Bienvenue <br>sur <br>ECOM Marketplace</h1>
         </div>  
     <?php endif; ?>
 

@@ -21,6 +21,8 @@ class ProduitController {
         
         $titre = "Produits";
 
+        print_r($pdo);
+        var_dump($this->pdo);
         ob_start(); 
         require_once __DIR__ . '/../Views/produits.php';
         $content = ob_get_clean();

@@ -21,7 +21,7 @@
         <div class="mb-5 img-map img-index" style="height: 300px; overflow: hidden;" data-aos="flip-up" data-aos-duration="1500">
             <div class="card-img-top card-img shadow">
                 <?php
-                    $carousel = new App\Core\Carousel;
+                    $carousel = new App\Views\Components\Carousel;
                     $carousel->Read($a, 2);
                 ?>
             </div>
