@@ -4,7 +4,7 @@ use App\Views\Components\Navbar;
 function buildNavbar($currentPage = '') {
 
     $navbar = new Navbar();
-    $navbar->AddItem('e-com ECOM', '', 'left', '', '');
+    $navbar->AddItem('e-com', '', 'left', '', '');
 
     if (isLoggedIn()) {
         $navbar->AddItem('','', 'center', $currentPage === 'home', 'bi bi-house-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Accueil');
@@ -39,7 +39,7 @@ function buildNavbar($currentPage = '') {
 
 function authNavbar($currentPage = '') {
     $navbar = new Navbar();
-    $navbar->AddItem('e-com ECOM','', 'left', '', '');
+    $navbar->AddItem('e-com','', 'left', '', '');
     $navbar->AddItem('','', 'center', $currentPage === 'home', 'bi bi-house-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Accueil');
     if ($currentPage === 'register') {
         $navbar->AddItem('','login','right', $currentPage === 'login', 'bi bi-person-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-right" title="Connexion');

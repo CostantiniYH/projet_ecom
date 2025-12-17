@@ -19,7 +19,7 @@ class AuthController
         $titre = "Connexion";
 
         ob_start(); 
-        require_once __DIR__ . '/../Views/auth/login.php';       
+        require_once __DIR__ . '/../Views/auth/login.form.php';       
         $content = ob_get_clean();
 
         require_once __DIR__ . '/../Views/partials/layout.php';
@@ -64,7 +64,7 @@ class AuthController
         }
 
         ob_start(); 
-        require_once __DIR__ . '/../Views/auth/register.php';       
+        require_once __DIR__ . '/../Views/auth/register.form.php';       
         $content = ob_get_clean();
 
         require_once __DIR__ . '/../Views/partials/layout.php';
