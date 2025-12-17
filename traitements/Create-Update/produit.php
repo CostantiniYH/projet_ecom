@@ -13,9 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $quantite = htmlspecialchars($_POST['quantite']);
     $description = htmlspecialchars($_POST['description']);
     $categorie = htmlspecialchars($_POST['categorie']);
-    $userId = htmlspecialchars($_POST['id_user']);
-    
-    $pdo = connect();
+    $userId = htmlspecialchars($_POST['id_user']); 
 
     $N_C = findBy2($pdo, 'nom','t_categories', 'id', $categorie);
     $nom_categorie = $N_C['nom'];

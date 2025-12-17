@@ -15,6 +15,8 @@ if (!defined('BASE_URL')) {
 use PDO;
 use Exception;
 
+// Singleton : Classe => connexion base de données
+
 class Database {
     public static function connect () {
         try {

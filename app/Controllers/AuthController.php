@@ -1,6 +1,9 @@
 <?php
 namespace App\Controllers;
 use App\Models\Entites\User;
+use App\Models\Services\UserService;
+use App\Models\Validations\UserValidator;
+
 
 
 class AuthController 
