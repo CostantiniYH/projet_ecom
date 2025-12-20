@@ -1,5 +1,5 @@
 <?php
-use App\Core\Route;
+use Core\Routing\Route;
 
 Route::get('/login', 'AuthController@login');
 Route::post('/login', 'AuthController@login');

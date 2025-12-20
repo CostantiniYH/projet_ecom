@@ -1,6 +1,6 @@
 <?php
 declare (strict_types=1);
-use App\Core\Route;
+use Core\Routing\Route;
 
 Route::get('/', 'HomeController@index');
 Route::get('/categories', 'CategorieController@index');

@@ -1,8 +1,6 @@
 <?php
 namespace App\Controllers;
 
-use App\Config\Database;
-use App\Views\Components\Carousel;
 
 class HomeController {
     public function index($pdo) {
