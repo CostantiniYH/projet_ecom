@@ -16,7 +16,7 @@ class AuthController
         $titre = "Connexion";
 
         ob_start(); 
-        require_once __DIR__ . '/../Views/auth/login.php';       
+        require_once __DIR__ . '/../Views/auth/login.form.php';       
         $content = ob_get_clean();
 
         require_once __DIR__ . '/../Views/partials/layout.php';
@@ -47,7 +47,7 @@ class AuthController
         }
     }
 
-    public function register() {
+    public function register($pdo) {
         $navbar = authNavbar('register');
 
         $titre = "Inscription";
@@ -56,12 +56,12 @@ class AuthController
 
         $user = null;
         if ($id) {
-            $user = findBy1 ($this->pdo, 't_users', 'id', $id);
+            $user = findBy1 ($pdo, 't_users', 'id', $id);
             $user = $user[0] ?? null;
         }
 
         ob_start(); 
-        require_once __DIR__ . '/../Views/auth/register.php';       
+        require_once __DIR__ . '/../Views/auth/register.form.php';       
         $content = ob_get_clean();
 
         require_once __DIR__ . '/../Views/partials/layout.php';
