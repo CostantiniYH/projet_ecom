@@ -4,7 +4,7 @@ use App\Views\Components\Navbar;
 function buildNavbar($currentPage = '') {
 
     $navbar = new Navbar();
-    $navbar->AddItem('e-com YHC', '', 'left', '', '');
+    $navbar->AddItem('Marketplace YHC', '', 'left', '', '');
 
     if (isLoggedIn()) {
         $navbar->AddItem('','', 'center', $currentPage === 'home', 'bi bi-house-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Accueil');
