@@ -4,8 +4,14 @@ namespace App\Controllers;
 use App\Config\Database;
 use App\Views\Components\Carousel;
 
-class HomeController {
-    public function index() {
+class HomeController 
+{
+    private $pdo;
+    public function __construct($pdo) {
+        $this->pdo = $pdo;
+    }
+
+    public function index($pdo) {
         $navbar = buildNavbar('home');
 
         $pdo = Database::connect();        
