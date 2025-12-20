@@ -1,7 +1,5 @@
 <?php
 namespace App\Controllers;
-
-use App\Config\Database;
 use App\Views\Components\Carousel;
 
 class HomeController 
@@ -13,8 +11,7 @@ class HomeController
 
     public function index($pdo) {
         $navbar = buildNavbar('home');
-
-        $pdo = Database::connect();        
+      
         $categories = getAll ($pdo, 't_categories');                
         $a = [];        
         foreach ($categories as $categorie) {
@@ -33,7 +30,7 @@ class HomeController
         $titre = "Accueil";
 
         ob_start(); 
-        require_once __DIR__ . '/../Views/home.php';       
+        require_once dirname(__DIR__) . '/Views/home.php';       
         $content = ob_get_clean();
 
         require_once __DIR__ . '/../Views/partials/layout.php';
