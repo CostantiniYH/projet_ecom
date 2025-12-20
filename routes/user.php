@@ -1,4 +1,4 @@
 <?php
-use App\Core\Route;
+use Core\Route;
 
 Route::get('/dashboard', 'UserController@dashboard');
