@@ -1,6 +1,7 @@
 <?php 
 namespace App\Models\Entites;
 use App\Config\Database;
+
 class User {
     private $nom;
     private $prenom;
@@ -29,49 +30,56 @@ class User {
     public function setError($error) {
         return array_push($this->error, $error);
     }    
-    public function setNom($nom) {
-        if (empty($nom)) {
-            return $this->setError("Le nom est vide");
-        } elseif (strlen($nom) < 3) {
-            return $this->setError("Le nom doit contenir au moins 3 caractères");
-        }
-        $this->nom = $nom;
-        return $this->nom;        
-    }
-    public function setPrenom($prenom) {
-        if (empty($prenom)) {
-           return $this->setError("Le prénom est vide");
-        } elseif (strlen($prenom) < 3) {
-               return $this->setError("Le prénom doit contenir au moins 3 caractères");
-        }
-        $this->prenom = $prenom;
-        return $this->prenom; 
-    }
-    public function setEmail($email) {
-        $emailSql = $this->verifyEmail($email);
-        $verif = $this->validateEmail($email);
 
-        if ($emailSql == true) {
+    public function setNom($nom) {
+        $this->nom = $nom;                
+    }
+
+    public function setPrenom($prenom) {
+       $this->prenom = $prenom;
+    }
+
+    public function setEmail($email) {
+        $verifBDD = $this->verifyEmail($email);
+        $validation = $this->validateEmail($email);
+        
+        if ($verifBDD == true) {
             return $this->setError("L'email existe déjà !");
         }
         
-        if ($verif == false ) {
+        if ($validation == false ) {
             return $this->setError("L'email est invalide !");
         }
-
+        
         $this->email = $email;
-        return $this->email;
     }
+
+    public function setPassword($password) {
+        $password = $this->hashPassword($password);
+        $this->password = $password;
+    }
+
+    public function setTelephone($telephone) {
+       $this->telephone = $telephone;
+    }
+
+    public function setSociete($societe) {
+        $this->societe = $societe;
+    }
+
+
+
     public static function verifyEmail($email) {
         $pdo = Database::connect();
         $value = findBy2 ($pdo, '*', 't_users',  'email', $email);
 
         if (is_array($value) && count($value) >= 1) {
             return true;
-            } else {
-                return false;
-            }
+        } else {
+            return false;
+        }
     }
+
     private function validateEmail($email) {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return true;
@@ -80,15 +88,7 @@ class User {
         }
     }
 
-    public function setPassword($password) {
-        if (strlen($password) < 8) {
-            return $this->setError("Le mot de passe doit contenir au moins 8 caractères");
-        }
-        
-        $password = $this->hashPassword($password);
-        $this->password = $password;
-        return $this->password;
-    }
+
     public function hashPassword($password) {
         return password_hash($password, PASSWORD_ARGON2ID);
     }
@@ -101,18 +101,4 @@ class User {
         }
     }
 
-    public function setTelephone($telephone) {
-        if (strlen($telephone) < 10) {
-            return $this->setError("Le numéro de téléphone doit contenir au moins 10 chiffres !");
-        }
-        $this->telephone = $telephone;
-        return $this->telephone;
-    }
-    public function setSociete($societe) {
-        if (strlen($societe) < 2) {
-            return $this->setError("La société doit contenir au moins 2 caractères !");
-        }
-        $this->societe = $societe;
-        return $this->societe;
-    }
 }

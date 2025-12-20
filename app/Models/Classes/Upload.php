@@ -30,19 +30,23 @@ class Upload {
         ];
         return $errorMessages[$errorCode] ?? "Erreur inconnue.";
     }
-    public function validate() {
+    public function validate() 
+    {
         if ($this->file['error'] !== UPLOAD_ERR_OK) {
             return $this->setError("Erreur lors de l'upload : " . $this->getUploadErrorMessage($this->file['error']));
         }
+
         $extension = strtolower(pathInfo($this->file['name'], PATHINFO_EXTENSION));
         if (!in_array($extension, $this->allowedExtensions)) {
             return $this->setError("Extension non autorisée.");
         }
+
         if ($this->file['size'] > $this->maxSize) {
             return $this->setError("Fichier trop volumineux.");
         }
         return true;
     }
+    
     public function moveTo($destination) {
         $this->filePath = $destination;
         if (!move_uploaded_file($this->file['tmp_name'], $destination)) {
