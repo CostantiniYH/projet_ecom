@@ -1,29 +1,11 @@
-<?php
-require_login();
 
-$categories = getAll($pdo, 't_categories');
-$produits = getAllWhere($pdo, 't_produits', 'deleted_at IS NULL AND quantite > ?', 0);
-
-$id = isset($_GET['id']) ? intval($_GET['id']) : null;  // Sécurisation
-
-$produit = null;
-if ($id) {
-    $produit = findBy($pdo, 't_produits', 'id', $id);
-    $produit = $produit[0] ?? null; // Vérifier si le produit existe
-    if (!$produit || empty($produit)) {
-        die("Produit introuvable.");
-    }
-}
-
-?>
 <div class="container mb-5 mt-5">
-    <?php require_once __DIR__ . '/../../components/alerts.php'; ?>
-        <h1 class="mb-5 shadow rounded-4 border-start border-end border-2 border-success">
-            Gestion des produits
-        </h1>
+    <h1 class="mb-5 shadow rounded-4 border-start border-end border-2 border-success">
+        Gestion des produits
+    </h1>
 
     <div class="row mb-4 gap-4">
-        <form action="<?= BASE_URL ?>controllers/Create-Update/produit.php" method="post" class="col-md-5 mb-5 p-2 shadow-lg
+        <form action="/form_produit" method="post" class="col-md-5 mb-5 p-2 shadow-lg
          rounded-4 border border-1 border-success" data-aos="zoom-in" enctype="multipart/form-data">
          <?php if ($id) { ?>
             <h2 class="text-center">Modifier le produit</h2>

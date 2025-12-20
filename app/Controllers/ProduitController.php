@@ -1,16 +1,21 @@
 <?php
 namespace App\Controllers;
+use App\Models\Requetes\UserModel;
+use App\Models\Validations\UserValidator;
+use App\Models\Services\UserService;
 
-use App\Config\Database;
-use PDO;
-use PDOException;
 
 class ProduitController {
-    public function liste_produits() {
+    private $pdo;
+    public function __construct($pdo)
+    {
+        $this->pdo = $pdo;
+    }
+
+    public function liste_produits($pdo) {
         $navbar = buildNavbar('produits');
 
         $id = $_GET['id'] ?? null;
-        $pdo = Database::connect();
         $produits = getAllWhere ($pdo, 't_produits', 'deleted_at IS NULL AND quantite > ?', 0);
         $produitID = findBy ($pdo, 't_produits', 'id_categorie', $id); 
         
@@ -23,9 +28,8 @@ class ProduitController {
         require_once __DIR__ . '/../Views/partials/layout.php';
     }
 
-    public function detail_produit() {
+    public function detail_produit($pdo) {
         $navbar = buildNavbar('détail_produits');
-        $pdo = Database::connect();
         $id = $_GET['id'];
         $one = findBy ($pdo, 't_produits', 'id', $id); 
         $one = $one[0];
@@ -34,6 +38,33 @@ class ProduitController {
 
         ob_start(); 
         require_once __DIR__ . '/../Views/produit_one.php';
+        $content = ob_get_clean();
+
+        require_once __DIR__ . '/../Views/partials/layout.php';
+    }
+
+    public function formProduit($pdo) {
+        require_login();
+
+        $categories = getAll($pdo, 't_categories');
+        $produits = getAllWhere($pdo, 't_produits', 'deleted_at IS NULL AND quantite > ?', 0);
+
+        $id = isset($_GET['id']) ? intval($_GET['id']) : null;  // Sécurisation
+
+        $produit = null;
+        if ($id) {
+            $produit = findBy($pdo, 't_produits', 'id', $id);
+            $produit = $produit[0] ?? null; // Vérifier si le produit existe
+            if (!$produit || empty($produit)) {
+                die("Produit introuvable.");
+            }
+        }
+        $navbar = buildNavbar('form_produit');
+
+        $titre = "Formulaire Produit";
+
+        ob_start(); 
+        require_once __DIR__ . '/../Views/form_produit.php';
         $content = ob_get_clean();
 
         require_once __DIR__ . '/../Views/partials/layout.php';

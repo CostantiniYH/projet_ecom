@@ -27,6 +27,9 @@ function produitDash($pdo) {
         echo "Erreur : " .$e->getMessage();
     }
 } 
+
+$categorie = getAll($this->pdo, 't_categories');
+
 $produits = produitDash($pdo);
 $image = getAll2($pdo, 't_images');
 

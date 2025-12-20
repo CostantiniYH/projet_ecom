@@ -24,7 +24,7 @@ class AuthController
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $value = findBy2( $this->pdo, '*', 't_users', 'email', $email);
+        $value = User::verifyEmail($email);
 
         if (is_array($value) && count($value) == 0) {
             header('Location: /login?erreur=L\'utilisateur n\'existe pas.');
