@@ -6,20 +6,29 @@ use Exception;
 // Singleton : Classe => connexion base de données
 
 class Database {
-    public static function connect () {
+     public static function connect()
+    {
+
+        // 2️⃣ Infos qui changent selon l’environnement
+            $dbHost = $_ENV['DB_HOST'];
+            $dbName = $_ENV['DB_NAME'];
+            $dbUser = $_ENV['DB_USER'];
+            $dbPass = $_ENV['DB_PASS'];
+        
+
+        // 3️⃣ Connexion à la base de données
         try {
-            $dsn = "mysql:host=localhost;dbname=db_ecom";
-            $user = "root";
-            $passwd = '';
+            $pdo = new \PDO(
+                "mysql:host=$dbHost;dbname=$dbName;charset=utf8",
+                $dbUser,
+                $dbPass
+            );
 
-            $pdo = new PDO($dsn, $user, $passwd);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+            // 4️⃣ Ce qu’on renvoie
             return $pdo;
 
-        } catch(Exception $e) {
-            echo "Erreur: " .$e->getMessage();   
-            return null;
+        } catch (\PDOException $e) {
+            die('Erreur BDD : ' . $e->getMessage());
         }
     }
 }
