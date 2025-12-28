@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     unzip \
     mariadb-client \
+    libmariadb3 libssl1.1 \
     && rm -rf /var/lib/apt/lists/*
 
 # Installer Composer
