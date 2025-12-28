@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `t_produits` (
   `id_categorie` int DEFAULT NULL,
   `image` longtext COLLATE utf8mb4_general_ci,
   `status` int NOT NULL DEFAULT '1',
-  `id_user` int NOT NULL DEFAULT '1',
+  `id_user` int NOT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),CONSTRAINT `fk_produits_categorie`
   FOREIGN KEY (`id_categorie`)
