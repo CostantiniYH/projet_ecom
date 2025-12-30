@@ -6,7 +6,6 @@ namespace App\Models\Validations;
 
 class UserValidator {
     public function validateRegistration($data) {
-        $errors [];
 
         if (empty($data['nom']) || strlen($data['nom']) < 3) {
             return $this->setError("Le nom doit contenir au moins 3 caractères");
