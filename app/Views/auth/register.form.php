@@ -7,7 +7,7 @@
             <input value="<?= htmlspecialchars($user['prenom'] ?? '') ?>" type="text"class="form-control" id="prenom" name="prenom" required>
         </div>
         <div class="form-group mb-2">
-            <input type="hidden" name="id"  value="<?= $user['id'] ?? '' ?>">
+            <input type="hidden" id= "id" name="id"  value="<?= $user['id'] ?? '' ?>">
             <label for="nom">Nom :</label> 
             <input value="<?= htmlspecialchars($user['nom'] ?? '') ?>" type="text" class="form-control" id="nom" name="nom" required>
         </div>

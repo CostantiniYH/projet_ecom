@@ -1,3 +1,3 @@
 <footer class="mt-5">
-    <p>&copy; 2024 || ECOM || Tous droits réservés.</p>    
+    <p>&copy; 2026 || ECOM || Tous droits réservés.</p>    
 </footer>

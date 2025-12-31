@@ -12,7 +12,7 @@ $base = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/');
 if ($base !== '' && strpos($uri, $base) === 0) {
     $uri = substr($uri, strlen($base));
 }
-$uri = $uri ?: '/';
+$uri = $uri ?? '/';
 
 require_once __DIR__ . '/../app/routes/web.php';
 require_once __DIR__ . '/../app/routes/auth.php';

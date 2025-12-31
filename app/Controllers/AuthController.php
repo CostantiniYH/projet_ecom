@@ -11,22 +11,22 @@ class AuthController
         $this->pdo = $pdo;
     }
     public function login() {
-        $navbar = authNavbar('login');
 
-        $titre = "Connexion";
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
 
-        ob_start(); 
-        require_once __DIR__ . '/../Views/auth/login.php';       
-        $content = ob_get_clean();
-
-        require_once __DIR__ . '/../Views/partials/layout.php';
-
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
+        if (empty($email) || empty($password)) {
+            $navbar = authNavbar('login');
+            $titre = "Connexion";
+            ob_start(); 
+            require_once __DIR__ . '/../Views/auth/login.form.php';       
+            $content = ob_get_clean();
+            require_once __DIR__ . '/../Views/partials/layout.php';
+            exit();
+        }
         $value = User::verifyEmail($email);
 
-        if (is_array($value) && count($value) == 0) {
+        if ($value === false) {
             header('Location: /login?erreur=L\'utilisateur n\'existe pas.');
             exit();
         }
@@ -52,7 +52,7 @@ class AuthController
 
         $titre = "Inscription";
 
-        $id = isset($_GET['id']) ? intval($_GET['id']) : null;
+        $id = isset($_POST['id']) ? intval($_POST['id']) : null;
 
         $user = null;
         if ($id) {
@@ -61,7 +61,7 @@ class AuthController
         }
 
         ob_start(); 
-        require_once __DIR__ . '/../Views/auth/register.php';       
+        require_once __DIR__ . '/../Views/auth/register.form.php';       
         $content = ob_get_clean();
 
         require_once __DIR__ . '/../Views/partials/layout.php';
