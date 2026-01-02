@@ -1,14 +1,7 @@
 <?php
 namespace App\Controllers;
 
-class UserController
-{
-    private $pdo;
-    public function __construct($pdo) {
-
-        $this->pdo = $pdo;
-    }
-
+class UserController {
     public function dashboard()
     {
         require_login();
@@ -20,8 +13,8 @@ class UserController
         $navbar = buildNavbar("Dashboard");
         $id = $_SESSION['user']['id'];
         $user = $_SESSION['user'];        
-        $myProduits = findBy($this->pdo, 't_produits', 'id_user', $id);
-        $myImage = findBy($this->pdo, 't_images', 'id_user', $id);
+        $myProduits = findBy('t_produits', 'id_user', $id);
+        $myImage = findBy('t_images', 'id_user', $id);
 
         $titre = "Dashboard";
         
@@ -29,9 +22,5 @@ class UserController
         require_once __DIR__ . '/../Views/users/dashboard.php';
         $content = ob_get_clean();
         require __DIR__ . '/../Views/partials/layout.php';
-        
-
     }
-
-
 }

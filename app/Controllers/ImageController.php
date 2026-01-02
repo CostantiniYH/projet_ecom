@@ -9,10 +9,8 @@ class ImageController {
         
         $titre = "Galerie d'images";
 
-        $pdo = Database::connect();
-        
-        $image = getAll($pdo, 't_images');
-        
+        $image = getAll('t_images');
+
         ob_start();
         require_once __DIR__ . '/../Views/image.php';
         $content = ob_get_clean();

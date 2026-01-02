@@ -6,14 +6,14 @@ if (!isAdmin()) {
 }
 
 
-$categories = getAll($pdo, 't_categories');
+$categories = getAll('t_categories');
 
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : null;
 
 $categorie = null;
 if ($id) {
-    $categorie = findBy1 ($pdo, 't_categories', 'id', $id);
+    $categorie = findBy1 ('t_categories', 'id', $id);
     $categorie = $categorie[0] ?? null;
 }
 

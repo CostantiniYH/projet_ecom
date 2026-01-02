@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
     } else {
-        echo "Erreur de validation : " . implode(', ', $upload->getError());
+        header( 'Location: ' . BASE_URL . 'Form/Compte/register.php?erreur=Erreur de validation : '. implode(', ', $upload->getError())  ) ;
         exit();
     } 
     
@@ -98,22 +98,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($id)) {
         
         $data['id'] = $id;
-        
-        $pdo = connect();    
-        
-        $update = update($pdo, 't_users', $data, 'id', $id);
+        $update = update('t_users', $data, 'id', $id);
         
         if ($update) {
             header('Location: ' . BASE_URL . 'compte/dashboard.php?success=Votre profil a été mis à jour avec succès !');
             exit();
         } else {
-            echo "Erreur lors de la modification de votre profil !";
+            header( 'Location: ' . BASE_URL . 'Form/Compte/register.php?erreur=Erreur lors de la modification de votre profil.' ) ;
             exit();
         }
-    } else {   
-        $pdo = connect();    
-        
-        insert($pdo,'t_users', $data);
+    } else {
+        insert(BD::co(),'t_users', $data);
         
         header('Location: ' . BASE_URL . 'compte/dashboard.php?success=Utilisateur ajouté avec succès !');
         exit();

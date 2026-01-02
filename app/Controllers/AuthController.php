@@ -5,11 +5,6 @@ use App\Models\Entites\User;
 
 class AuthController 
 {
-    private $pdo;
-    public function __construct($pdo)
-    {
-        $this->pdo = $pdo;
-    }
     public function login() {
 
         $email = $_POST['email'] ?? '';
@@ -56,7 +51,7 @@ class AuthController
 
         $user = null;
         if ($id) {
-            $user = findBy1 ($this->pdo, 't_users', 'id', $id);
+            $user = findBy1 ('t_users', 'id', $id);
             $user = $user[0] ?? null;
         }
 

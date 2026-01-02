@@ -6,15 +6,14 @@ if (isLoggedIn()) {
 }
 
 use App\Config\Database;
-$pdo = Database::connect();
-$categories = getAll($pdo, 't_categories');
-$images = getAll($pdo, 't_images');
+$categories = getAll('t_categories');
+$images = getAll('t_images');
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : null;
 
 $image = null;
 if ($id) {
-    $image = findBy ($pdo, 't_images', 'id', $id);
+    $image = findBy ('t_images', 'id', $id);
     $image = $image[0] ?? null;
 }
 

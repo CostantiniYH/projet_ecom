@@ -14,10 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $description = htmlspecialchars($_POST['description']);
     $categorie = htmlspecialchars($_POST['categorie']);
     $userId = htmlspecialchars($_POST['id_user']);
-    
-    $pdo = connect();
 
-    $N_C = findBy2($pdo, 'nom','t_categories', 'id', $categorie);
+    $N_C = findBy2('nom','t_categories', 'id', $categorie);
     $nom_categorie = $N_C['nom'];
    
     $produit = new Produit($nom, $prix, $devise, $quantite, $categorie, $description);
@@ -90,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'id_user' => $userId
     ];
 
-    insert($pdo,'t_produits', $data);
+    insert(BD::co(),'t_produits', $data);
     header('Location: ' . BASE_URL . 'Form/Crud/produit.php?success=Produit ajouté avec succès !');
     exit();
 } else {

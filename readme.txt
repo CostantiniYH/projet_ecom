@@ -1,4 +1,12 @@
+02/01/2025
+    rae rechercher register pour copier/coller depuis l'ancienne vers la nouvelle méthode d'YHC.
+    élagage $pdo = connect() et remplacement par BD::co puis généralisation.
 28/12/2025
+    rae
+        register
+    xdebug
+        xdebug.log_level=0
+    login
     Install git
         git config --global user.name "hcos"
         git config --global user.email herve.costantini@gmail.com

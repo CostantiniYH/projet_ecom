@@ -6,23 +6,16 @@ use App\Models\Services\UserService;
 
 
 class ProduitController {
-    private $pdo;
-    public function __construct($pdo)
-    {
-        $this->pdo = $pdo;
-    }
 
-    public function liste_produits($pdo) {
+    public function liste_produits() {
         $navbar = buildNavbar('produits');
 
         $id = $_GET['id'] ?? null;
-        $produits = getAllWhere ($pdo, 't_produits', 'deleted_at IS NULL AND quantite > ?', 0);
-        $produitID = findBy ($pdo, 't_produits', 'id_categorie', $id); 
+        $produits = getAllWhere ('t_produits', 'deleted_at IS NULL AND quantite > ?', 0);
+        $produitID = findBy ('t_produits', 'id_categorie', $id); 
         
         $titre = "Produits";
 
-        print_r($pdo);
-        var_dump($this->pdo);
         ob_start(); 
         require_once __DIR__ . '/../Views/produits.php';
         $content = ob_get_clean();
@@ -30,10 +23,10 @@ class ProduitController {
         require_once __DIR__ . '/../Views/partials/layout.php';
     }
 
-    public function detail_produit($pdo) {
+    public function detail_produit() {
         $navbar = buildNavbar('détail_produits');
         $id = $_GET['id'];
-        $one = findBy ($pdo, 't_produits', 'id', $id); 
+        $one = findBy ('t_produits', 'id', $id); 
         $one = $one[0];
         
         $titre = "Détails du produit";
@@ -45,17 +38,17 @@ class ProduitController {
         require_once __DIR__ . '/../Views/partials/layout.php';
     }
 
-    public function formProduit($pdo) {
+    public function formProduit() {
         require_login();
 
-        $categories = getAll($pdo, 't_categories');
-        $produits = getAllWhere($pdo, 't_produits', 'deleted_at IS NULL AND quantite > ?', 0);
+        $categories = getAll('t_categories');
+        $produits = getAllWhere('t_produits', 'deleted_at IS NULL AND quantite > ?', 0);
 
         $id = isset($_GET['id']) ? intval($_GET['id']) : null;  // Sécurisation
 
         $produit = null;
         if ($id) {
-            $produit = findBy($pdo, 't_produits', 'id', $id);
+            $produit = findBy('t_produits', 'id', $id);
             $produit = $produit[0] ?? null; // Vérifier si le produit existe
             if (!$produit || empty($produit)) {
                 die("Produit introuvable.");

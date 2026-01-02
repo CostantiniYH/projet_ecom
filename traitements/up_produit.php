@@ -41,8 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Erreur de validation : " . implode(', ', $upload->getError());
     } 
     
-    $pdo = connect();
-    
     if ($id) {
         
         $produit = new Produit($nom, $prix, $devise, $quantite, $id_categorie, $description);
@@ -58,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'image' => $destination
         ];
 
-        $update = update($pdo, 't_produits', $data, 'id', $id);
+        $update = update('t_produits', $data, 'id', $id);
         
         if ($update) {
             header('Location: ' . BASE_URL . 'admin/dashboard.php?success=Produit modifié avec succès');
@@ -79,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'image' => $destination
         ];
         
-        insert($pdo,'t_produits', $data);
+        insert(BD::co(),'t_produits', $data);
         
         header('Location: ' . BASE_URL . 'admin/dashboard.php?success=Produit ajouté avec succès !');
         exit();

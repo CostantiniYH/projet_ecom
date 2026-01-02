@@ -7,7 +7,6 @@ class PanierController {
     public function index() {
         $navbar = buildNavbar('panier');
 
-        $pdo = Database::connect();
         $titre = "Mon Panier";
 
         ob_start(); 

@@ -12,14 +12,13 @@ if (isAdmin()) {
 //print_r($_SESSION);
 //echo "</pre>";
 use APP\Config\Database;
-$pdo = Database::connect();
 
 
-function produitDash($pdo) {
+function produitDash() {
     try {
     $sql = "SELECT p.*, c.nom AS nom_categorie FROM t_produits p
     INNER JOIN t_categories c ON p.id_categorie = c.id WHERE deleted_at IS NULL";
-    $stmt = $pdo->prepare($sql);
+    $stmt = BD::co()->prepare($sql);
     $stmt->execute([]);
     $produit = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $produit;
@@ -28,10 +27,10 @@ function produitDash($pdo) {
     }
 } 
 
-$categorie = getAll($this->pdo, 't_categories');
+$categorie = getAll('t_categories');
 
-$produits = produitDash($pdo);
-$image = getAll2($pdo, 't_images');
+$produits = produitDash();
+$image = getAll2('t_images');
 
 if (!isset($_SESSION['user'])) {
     die("Erreur : utilisateur non connecté.");

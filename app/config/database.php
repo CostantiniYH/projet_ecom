@@ -15,22 +15,22 @@ if (!defined('BASE_URL')) {
 use PDO;
 use Exception;
 
-class Database {
-    public static function connect () {
-        try {
-            $dsn = "mysql:host=localhost;dbname=db_ecom";
-            $user = "root";
-            $passwd = '';
-
-            $pdo = new PDO($dsn, $user, $passwd);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            return $pdo;
-
-        } catch(Exception $e) {
-            echo "Erreur: " .$e->getMessage();   
-            return null;
+class BD {
+    static protected $pdo = null;
+    public static function co/*nnect*/ () {
+        if (self::$pdo == null) {
+            try {
+                $dsn = "mysql:host=localhost;dbname=db_ecom";
+                $user = "root";
+                $passwd = '';
+                $pdo = new PDO($dsn, $user, $passwd);
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$pdo = $pdo;
+            } catch(Exception $e) {
+                die("Erreur de connexion : " . $e->getMessage());
+            }
         }
+        return self::$pdo;
     }
 }
 

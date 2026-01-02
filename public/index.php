@@ -22,8 +22,7 @@ require_once __DIR__ . '/../app/routes/admin.php';
 use App\Core\Router;
 use App\Config\Database;
 
-$pdo = Database::connect();
-$router = new Router($pdo);
+$router = new Router();
 $router->run();
 
 ?>

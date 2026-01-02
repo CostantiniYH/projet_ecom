@@ -10,9 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nom = htmlspecialchars($_POST['nom']);
     $categorie = htmlspecialchars($_POST['categorie']);
 
-    $pdo = connect();
-
-    $N_C = findBy2($pdo, 'nom','t_categories', 'id', $categorie);
+    $N_C = findBy2('nom','t_categories', 'id', $categorie);
     $nom_categorie = $N_C['nom'];
 
     $upload = new Upload($_FILES['image']);
@@ -72,15 +70,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $categorieDir = $uploadDir . $categorieClean . '/';
     $imageUrl = $categorieDir . $fileName;
 
-    $pdo = connect();
-
     $data = [
         'nom' => $nom,
         'chemin' => $imageUrl,
         'id_categorie' => $categorie
     ];
 
-    insert($pdo,'t_images', $data);
+    insert(BD::co(),'t_images', $data);
 
     header('Location: ' . BASE_URL . 'Form/Crud/image.php?success=Image ajoutée avec succès !');
 } else {

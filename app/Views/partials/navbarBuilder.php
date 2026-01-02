@@ -44,7 +44,7 @@ function authNavbar($currentPage = '') {
     if ($currentPage === 'register') {
         $navbar->AddItem('','login','right', $currentPage === 'login', 'bi bi-person-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-right" title="Connexion');
     } else {
-    $navbar->AddItem('Inscription','register','right', $currentPage === 'register', '');
+        $navbar->AddItem('Inscription','register','right', $currentPage === 'register', '');
     }
     return $navbar;
 }

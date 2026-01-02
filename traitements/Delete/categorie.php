@@ -4,13 +4,12 @@ require_once __DIR__ . '/../../controllers/session.php';
 $id = $_GET['id'];
 
 if ($id) {
-    $pdo = connect();
-    $categorie = findBy1($pdo, 't_categories', 'id', $id);
+    $categorie = findBy1('t_categories', 'id', $id);
     $categorie = $categorie[0] ?? null;
     $categorieNom = $categorie['nom'];
     
     if ($categorie) {
-        delete($pdo, 't_categories', $id);
+        delete('t_categories', $id);
        // var_dump(delete($connect, 't_categories', $id, true));
        // exit();
         if (isAdmin()) {

@@ -3,17 +3,11 @@ namespace App\Controllers;
 
 class AdminController
 {
-    private $pdo;
-    public function __construct($pdo) {
-
-        $this->pdo = $pdo;
-    }
-
     public function dashboard()
     {
         $navbar = buildNavbar("Dashboard admin");
-        $user = getAll($this->pdo, 't_users');
-        $categorie = getAll($this->pdo, 't_categories');
+        $user = getAll('t_users');
+        $categorie = getAll('t_categories');
 
 
         $titre = "Dashboard admin";

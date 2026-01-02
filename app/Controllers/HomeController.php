@@ -5,13 +5,13 @@ use App\Config\Database;
 use App\Views\Components\Carousel;
 
 class HomeController {
-    public function index($pdo) {
+    public function index() {
         $navbar = buildNavbar('home');
         
-        $categories = getAll ($pdo, 't_categories');                
+        $categories = getAll ('t_categories');                
         $a = [];        
         foreach ($categories as $categorie) {
-            $files = glob('uploads/' . $categorie['nom'] . '/*.{jpg}', GLOB_BRACE);            
+            $files = glob('uploads/' . $categorie['nom'] . '/*.jpg');            
             foreach ($files as $file) {
                 $fileName = basename($file, pathinfo($file, PATHINFO_EXTENSION));
                 $text = ucwords(str_replace(['_', '-', '.'], ' ', $fileName));

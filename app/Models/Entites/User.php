@@ -11,6 +11,7 @@ class User {
     private $societe;
     private $error = [];
 
+
     public function __construct($nom, $prenom, $email, $password, $telephone, $societe) {
         $this->setNom($nom);
         $this->setPrenom($prenom);
@@ -70,8 +71,7 @@ class User {
 
 
     public static function verifyEmail($email) {
-        $pdo = Database::connect();
-        $value = findBy2 ($pdo, '*', 't_users',  'email', $email);
+        $value = findBy2 ('*', 't_users',  'email', $email);
 
         if (is_array($value) && count($value) >= 1) {
             return true;

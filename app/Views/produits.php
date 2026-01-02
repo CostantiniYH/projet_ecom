@@ -1,7 +1,7 @@
 <div class="container mb-5 mt-5">       
     <h1 class="mb-5 shadow rounded-4 border-start border-end border-2 border-success"> 
         <?php
-            $categorie = findBy2 ($pdo, 'nom, id', 't_categories', 'id',$id);
+            $categorie = findBy2 ('nom, id', 't_categories', 'id',$id);
             
             if (!empty($_GET['id'])) {
                     echo 'Produits ' . htmlspecialchars($categorie['nom']);
