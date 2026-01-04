@@ -68,13 +68,11 @@ class User {
         $this->societe = $societe;
     }
 
-
-
     public static function verifyEmail($email) {
         $value = findBy2 ('*', 't_users',  'email', $email);
 
         if (is_array($value) && count($value) >= 1) {
-            return true;
+            return $value;
         } else {
             return false;
         }
@@ -87,7 +85,6 @@ class User {
         return false;
         }
     }
-
 
     public function hashPassword($password) {
         return password_hash($password, PASSWORD_ARGON2ID);
