@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'id_user' => $userId
     ];
 
-    insert(BD::co(),'t_produits', $data);
+    insert('t_produits', $data);
     header('Location: ' . BASE_URL . 'Form/Crud/produit.php?success=Produit ajouté avec succès !');
     exit();
 } else {

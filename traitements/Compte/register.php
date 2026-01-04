@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
     } else {
-        insert(BD::co(),'t_users', $data);
+        insert('t_users', $data);
         
         header('Location: ' . BASE_URL . 'compte/dashboard.php?success=Utilisateur ajouté avec succès !');
         exit();

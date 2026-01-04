@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'image' => $destination
         ];
         
-        insert(BD::co(),'t_produits', $data);
+        insert('t_produits', $data);
         
         header('Location: ' . BASE_URL . 'admin/dashboard.php?success=Produit ajouté avec succès !');
         exit();

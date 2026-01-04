@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'image' => $imageUrl
     ];
     
-    insert(BD::co(),'t_categories', $data);
+    insert('t_categories', $data);
 
     header('Location: ' . BASE_URL . 'Form/Crud/categorie.php?success=Catégorie ajoutée avec succès !');
     exit();

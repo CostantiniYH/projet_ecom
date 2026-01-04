@@ -1,6 +1,7 @@
+03/01/2025
+    rechercher register pour copier/coller depuis l'ancienne vers la nouvelle méthode d'YHC.
 02/01/2025
-    rae rechercher register pour copier/coller depuis l'ancienne vers la nouvelle méthode d'YHC.
-    élagage $pdo = connect() et remplacement par BD::co puis généralisation.
+    élagage $pdo = connect() et remplacement par BD::co() puis généralisation.
 28/12/2025
     rae
         register
