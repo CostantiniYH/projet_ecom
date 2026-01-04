@@ -60,7 +60,9 @@ class AuthController
         extract($_GET);
         if ($url === 'moi') {
             $id = $_SESSION['user']['id'];
-            $user2 = $_SESSION['user'];
+            $user2 = findBy1( 't_users', 'id', $id);
+            $password = ($user2[0]['password']);
+            $password2 = $password;
         }
         extract($_POST);
         $user = new User($nom, $prenom, $email, $password, $password2, $telephone, $societe);

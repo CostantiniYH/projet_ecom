@@ -63,7 +63,10 @@ class User {
         if ($password !== $password2) {
             return $this->setError("Les mots de passe ne correspondent pas.");
         }
-        $password = $this->hashPassword($password);
+        
+        if ($_GET['url'] !== 'moi') {
+            $password = $this->hashPassword($password);
+        }
         $this->password = $password;
     }
 
