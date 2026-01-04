@@ -43,8 +43,13 @@ class AuthController
     public function registerGet() {
         $navbar = authNavbar('register');
         $titre = "Inscription";
-        $user = null;
         $id = null;
+        $user = null;
+        extract($_GET);
+        if ($url === 'moi') {
+            $id = $_SESSION['user']['id'];
+            $user = $_SESSION['user'];
+        }
         ob_start(); 
         require_once __DIR__ . '/../Views/auth/register.form.php';       
         $content = ob_get_clean();
@@ -52,29 +57,13 @@ class AuthController
     }
 
     public function registerPost() {
-        $id = isset($_POST['id']) ? intval($_POST['id']) : null;
-        $user = null;
-        if ($id) {
-            $user = findBy1 ('t_users', 'id', $id);
-            $user = $user[0] ?? null;
+        extract($_GET);
+        if ($url === 'moi') {
+            $id = $_SESSION['user']['id'];
+            $user2 = $_SESSION['user'];
         }
-
-        $nom = $_POST['nom'] ?? "";
-        $prenom = $_POST['prenom'] ?? "";
-        $telephone = $_POST['telephone'] ?? "";
-        $societe = $_POST['societe'] ?? "";
-
-        $email = $_POST['email'] ?? "";
-        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-        
-        $password = $_POST['password'] ?? "";
-        $passwordConfirm = $_POST['password2'] ?? "";
-        if ($password !== $passwordConfirm) {
-            header('Location: ' . BASE_URL . 'register?message=Les mots de passe ne correspondent pas.');
-            exit();
-        }
-        
-        $user = new User($nom, $prenom, $email, $password, $telephone, $societe);
+        extract($_POST);
+        $user = new User($nom, $prenom, $email, $password, $password2, $telephone, $societe);
         $error = $user->getError();
         if (!empty($error)) {
             header('Location: ' . BASE_URL . 'register?erreur=' . urlencode($error[0]));
@@ -82,12 +71,16 @@ class AuthController
         }
         
         $upload = new Upload($_FILES['image']);
-        if ($upload->validate()) {
+        if ($upload->validate() === true) {
             [$dest, $imageUrl] = explode(';', $upload->getDestAndUrl($user));
             $upload->moveTo($dest);
         } else {
-            header( 'Location: ' . BASE_URL . 'register?erreur=Erreur de validation : '. implode(', ', $upload->getError())  ) ;
-            exit();
+            if (!empty($id)) {
+                $imageUrl = $user2['photo'];
+            } else {
+                header( 'Location: ' . BASE_URL . 'register?erreur=Erreur de validation : '. implode(', ', $upload->getError())  ) ;
+                exit();
+            }
         }
 
         $data = [
@@ -103,7 +96,17 @@ class AuthController
         if (!empty($id)) {
             $data['id'] = $id;
             update('t_users', $data, 'id', $id);
-            header('Location: ' . BASE_URL . 'register?success=Votre profil a été mis à jour avec succès !');
+            header('Location: ' . BASE_URL . 'dashboard?success=Votre profil a été mis à jour avec succès !');
+            $_SESSION['user'] = [
+                'id' => $data['id'],
+                'nom' => $data['nom'],
+                'prenom' => $data['prenom'],
+                'email' => $data['email'],
+                'telephone' => $data['telephone'],
+                'societe' => $data['societe'],
+                'photo' => $data['photo'],
+                'role' => $data['role'],
+            ];
         } else {
             insert('t_users', $data);
             header('Location: ' . BASE_URL . 'register?success=Utilisateur ajouté avec succès !');

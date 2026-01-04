@@ -12,11 +12,11 @@ class User {
     private $error = [];
 
 
-    public function __construct($nom, $prenom, $email, $password, $telephone, $societe) {
+    public function __construct($nom, $prenom, $email, $password, $password2, $telephone, $societe) {
         $this->setNom($nom);
         $this->setPrenom($prenom);
         $this->setEmail($email);
-        $this->setPassword($password);
+        $this->setPassword($password, $password2);
         $this->setTelephone($telephone);
         $this->setSociete($societe);
     }
@@ -41,7 +41,11 @@ class User {
     }
 
     public function setEmail($email) {
-        $verifBDD = $this->verifyEmail($email);
+        if ($_GET['url'] !== 'moi') {
+            $verifBDD = $this->verifyEmail($email);
+        } else {
+            $verifBDD = false;
+        }
         $validation = $this->validateEmail($email);
         
         if ($verifBDD == true) {
@@ -55,7 +59,10 @@ class User {
         $this->email = $email;
     }
 
-    public function setPassword($password) {
+    public function setPassword($password, $password2) {
+        if ($password !== $password2) {
+            return $this->setError("Les mots de passe ne correspondent pas.");
+        }
         $password = $this->hashPassword($password);
         $this->password = $password;
     }
