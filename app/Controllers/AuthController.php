@@ -78,7 +78,7 @@ class AuthController
             $upload->moveTo($dest);
         } else {
             if (!empty($id)) {
-                $imageUrl = $user2['photo'];
+                $imageUrl = ($user2[0]['photo']);
             } else {
                 header( 'Location: ' . BASE_URL . 'register?erreur=Erreur de validation : '. implode(', ', $upload->getError())  ) ;
                 exit();
