@@ -1,3 +1,5 @@
+05/01/2025
+    finalisation de moi
 04/01/2025
     dissocier get (affichage form) et post (collecte des infos)
         login
