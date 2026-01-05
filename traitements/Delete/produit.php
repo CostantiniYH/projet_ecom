@@ -6,13 +6,13 @@ $id = $_GET['id'];
 
 if ($id) {
     $connect = connect();
-    $produit = findBy1($connect, 't_produits', 'id', $id);
+    $produit = findBy1( 't_produits', 'id', $id);
     $produit = $produit[0] ?? null;
     $produitNom = $produit['nom'];
     
     if ($produit) {
-        delete($connect, 't_produits', $id, true);
-       // var_dump(delete($connect, 't_produits', $id, true));
+        delete( 't_produits', $id, true);
+       // var_dump(delete( 't_produits', $id, true));
        // exit();
         if (isAdmin()) {
             header('Location: ' . BASE_URL . 'admin/dashboard.php?success=' . urlencode("Produit $produitNom supprimé avec succès !"));

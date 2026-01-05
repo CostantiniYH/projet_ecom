@@ -47,6 +47,17 @@ class Upload {
         return true;
     }
     
+    public function getDestAndUrl($user) {
+        $userClean = preg_replace("/[^a-zA-Z0-9_-]/", "_", strtolower($user->getNom() . "_" . $user->getPrenom()));
+        $uploadDir = __DIR__ . '/../../../public/uploads/' . $userClean . '/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0775, true);
+        }
+        $ext = pathinfo($this->file['name'], PATHINFO_EXTENSION);
+        $fileName = uniqid('img_') . '.' . $ext;
+        return "$uploadDir$fileName;uploads/$userClean/$fileName";
+    }
+    
     public function moveTo($destination) {
         $this->filePath = $destination;
         if (!move_uploaded_file($this->file['tmp_name'], $destination)) {

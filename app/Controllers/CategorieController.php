@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use App\Config\Database;
+use App\Config\BD;
 use PDO;
 use PDOException;
 

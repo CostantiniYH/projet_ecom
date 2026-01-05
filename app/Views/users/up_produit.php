@@ -1,9 +1,7 @@
 <?php
 require_login();
 
-use App\Config\Database;
-$connect = Database::connect(); 
-$categories = getAll($connect, 't_categories');
+$categories = getAll( 't_categories');
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     die("ID invalide.");
@@ -11,7 +9,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 
 $id = intval($_GET['id']); // Sécurisation
 
-$up_produit = findBy($connect, 't_produits', 'id', $id);
+$up_produit = findBy( 't_produits', 'id', $id);
 
 if (!$up_produit || empty($up_produit)) {
     die("Produit introuvable.");

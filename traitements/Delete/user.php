@@ -6,11 +6,11 @@ $id = $_GET['id'];
 
 if ($id) {
     $connect = connect();
-    $user = findBy1($connect, 't_users', 'id', $id);
+    $user = findBy1( 't_users', 'id', $id);
     $user = $user[0] ?? null;
     
     if ($user) {
-        delete($connect, 't_users', $id, true);
+        delete( 't_users', $id, true);
         if (isAdmin()) {
             header('Location: ' . BASE_URL . 'admin/dashboard.php?success=Utilisateur supprimé avec succès !');
         } else {

@@ -2,7 +2,6 @@
     <p class="mt-2 border border-2 border-success p-3 rounded mb-3">Vous êtes connecté en tant que <?= $user['email']; ?></p>
     <h1 class="shadow rounded p-4">Dashboard <?= $user['nom']; ?> <?= $user['prenom']; ?></h1>
 
-    <img class="bandeau rounded-4 shadow" src="<?= BASE_URL . $user['photo']; ?>">
     <div class="row mt-5 gap-5">
         <div class="col-md table-responsive">
             <div class="p-3 shadow rounded border border-1 border-success mb-5">

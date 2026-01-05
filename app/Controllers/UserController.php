@@ -6,10 +6,6 @@ class UserController {
     {
         require_login();
 
-        if (!isset($_SESSION['user'])) {
-            die("Erreur : utilisateur non connecté.");
-        } 
-
         $navbar = buildNavbar("Dashboard");
         $id = $_SESSION['user']['id'];
         $user = $_SESSION['user'];        

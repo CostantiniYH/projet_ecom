@@ -1,5 +1,5 @@
 <div class="container mt-5 mb-5">
-    <form action="/register" method="post" class="p-5 col-md-6 mb-5 shadow-lg
+    <form action="/<?php if (!$id) { echo 'register'; } else { echo 'moi'; } ?>" method="post" class="p-5 col-md-6 mb-5 shadow-lg
     rounded-3 border-blue mx-auto" enctype="multipart/form-data">
         <h2 class="text-center"><?= $user ? 'Modifier votre profil' : 'Inscription' ?></h2>
         <div class="form-group mb-2">
@@ -21,7 +21,7 @@
         </div>
         <div class="form-groupe mb-2">
             <label for="image">Photo de profil</label>
-            <input value="" type="file" class="form-control" id="image" name="image" required>
+            <input value="" type="file" class="form-control" id="image" name="image" <?php if (!$id) { echo 'required'; } ?>>
         </div>
         <div class="form-group mb-2">
             <label for="email">Email :</label>
