@@ -10,8 +10,6 @@ if ($id) {
     
     if ($categorie) {
         delete('t_categories', $id);
-       // var_dump(delete($connect, 't_categories', $id, true));
-       // exit();
         if (isAdmin()) {
             header('Location: ' . BASE_URL . 'admin/dashboard.php?success=' . urlencode("categorie $categorieNom supprimé avec succès !"));
         } else {

@@ -56,8 +56,7 @@ function findBy1 ($table, $champ, $id) {
 // Sélectionner un élément par son ID avec jointure :
 function findBy ($table, $champ, $id) {
     try {
-        $sql = "SELECT $table.*, c.nom AS nom_categorie FROM $table
-        INNER JOIN t_categories c ON $table.id_categorie = c.id WHERE $table.$champ = ?";
+        $sql = "SELECT $table.*, c.nom AS nom_categorie FROM $table INNER JOIN t_categories c ON $table.id_categorie = c.id WHERE $table.$champ = ?";
         
         $stmt = BD::co()->prepare($sql);
         $stmt->execute([$id]);

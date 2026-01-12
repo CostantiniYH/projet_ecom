@@ -1,3 +1,9 @@
+05/01/2025
+    finalisation de moi
+04/01/2025
+    dissocier get (affichage form) et post (collecte des infos)
+        login
+    traitement/compte/register.php : supprimé puisqu'intégré dans app\Controllers\AuthController.php
 03/01/2025
     rechercher register pour copier/coller depuis l'ancienne vers la nouvelle méthode d'YHC.
 02/01/2025
