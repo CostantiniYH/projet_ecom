@@ -2,7 +2,6 @@
 namespace App\Models\Requetes;
 
 use App\Config\BD;
-use App\Models\Model;
 
 class UserModel extends Model 
 {

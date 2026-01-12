@@ -2,7 +2,6 @@
 namespace App\Controllers;
 use App\Models\Entites\User;
 use App\Models\Classes\Upload;
-use App\Config\BD;
 
 
 class AuthController 
