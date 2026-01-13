@@ -6,7 +6,6 @@ use App\Views\Components\Carousel;
 
 class HomeController {
     public function index() {
-        $navbar = buildNavbar('home');
         
         $categories = getAll ('t_categories');                
         $a = [];        
@@ -22,13 +21,9 @@ class HomeController {
                 ];
             }
         }
-
-        $titre = "Accueil";
-
-        ob_start(); 
-        require_once __DIR__ . '/../Views/home.php';       
-        $content = ob_get_clean();
-
-        require_once __DIR__ . '/../Views/partials/layout.php';
+        $data = [
+            'a' => $a
+        ];
+        afficher('home', 'Accueil', 'home', $data);
     }
 }

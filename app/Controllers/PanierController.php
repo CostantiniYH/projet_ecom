@@ -5,14 +5,6 @@ use PDO;
 
 class PanierController {
     public function index() {
-        $navbar = buildNavbar('panier');
-
-        $titre = "Mon Panier";
-
-        ob_start(); 
-        require_once __DIR__ . '/../Views/panier.html';
-        $content = ob_get_clean();
-
-        require_once __DIR__ . '/../Views/partials/layout.php';
+        afficher('panier', 'Mon Panier', 'panier');
     }
 }

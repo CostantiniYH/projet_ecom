@@ -3,16 +3,10 @@ namespace App\Controllers;
 use App\Models\Entites\User;
 use App\Models\Classes\Upload;
 
-
 class AuthController 
 {
     public function loginGet() {
-        $navbar = authNavbar('login');
-        $titre = "Connexion";
-        ob_start(); 
-        require_once __DIR__ . '/../Views/auth/login.form.php';       
-        $content = ob_get_clean();
-        require_once __DIR__ . '/../Views/partials/layout.php';
+        afficher('login', 'Connexion', 'auth/login.form');
     }
 
     public function loginPost() {
@@ -40,8 +34,6 @@ class AuthController
     }
 
     public function registerGet() {
-        $navbar = authNavbar('register');
-        $titre = "Inscription";
         $id = null;
         $user = null;
         extract($_GET);
@@ -49,10 +41,11 @@ class AuthController
             $id = $_SESSION['user']['id'];
             $user = $_SESSION['user'];
         }
-        ob_start(); 
-        require_once __DIR__ . '/../Views/auth/register.form.php';       
-        $content = ob_get_clean();
-        require_once __DIR__ . '/../Views/partials/layout.php';
+        $data = [
+            'id' => $id,
+            'user' => $user
+        ];
+        afficher('register', 'Inscription', 'auth/register.form', $data);
     }
 
     public function registerPost() {
