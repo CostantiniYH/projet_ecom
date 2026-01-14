@@ -40,7 +40,7 @@ function require_login() {
 function logoutUser() {
     session_destroy();
     setcookie(session_name(), '', time() - 3600, '/');
-    header('Location: /?succes=Vous vous êtes déconnecté avec succès.');
+    header('Location: /?success=Vous vous êtes déconnecté avec succès.');
     exit();
 }
 ?>

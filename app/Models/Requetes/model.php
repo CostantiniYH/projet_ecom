@@ -1,5 +1,6 @@
 <?php
 namespace App\Models\Requetes;
+use App\Config\BD;
 
 class Model {
     protected function query($sql, $params = [])

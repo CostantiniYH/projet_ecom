@@ -21,6 +21,7 @@ require_once __DIR__ . '/coreTemp/session.php';
 require_once __DIR__ . '/Models/Requetes/model.php';
 require_once __DIR__ . '/Models/Requetes/ProduitModel.php';
 require_once __DIR__ . '/Views/partials/navbarBuilder.php'; 
+require_once __DIR__ . '/Views/view.php'; 
 
 
 $configFile = __DIR__ . '/config/database.php';

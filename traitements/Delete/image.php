@@ -11,7 +11,7 @@ if ($id) {
     
     if ($image) {
         delete('t_images', $id);
-       // var_dump(delete($connect, 't_images', $id, true));
+       // var_dump(delete( 't_images', $id, true));
        // exit();
         if (isAdmin()) {
             header('Location: ' . BASE_URL . 'admin/dashboard.php?success=' . urlencode("image $imageNom supprimé avec succès !"));

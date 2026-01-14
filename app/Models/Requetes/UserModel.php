@@ -2,7 +2,7 @@
 namespace App\Models\Requetes;
 
 use App\Config\BD;
-use App\Models\Model;
+use PDO;
 
 class UserModel extends Model 
 {

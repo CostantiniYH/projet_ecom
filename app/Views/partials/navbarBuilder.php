@@ -5,9 +5,9 @@ function buildNavbar($currentPage = '') {
 
     $navbar = new Navbar();
     $navbar->AddItem('e-com ECOM', '', 'left', '', '');
+    $navbar->AddItem('','', 'center', $currentPage === 'home', 'bi bi-house-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Accueil');
 
     if (isLoggedIn()) {
-        $navbar->AddItem('','', 'center', $currentPage === 'home', 'bi bi-house-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Accueil');
         $navbar->AddItem('Catégories liste', 'categories', 'dropdown', '', '');   
         $navbar->AddItem('Produits liste', 'produits', 'dropdown', '', '');
         $navbar->AddItem('Galerie', 'images', 'dropdown', '', '');
@@ -19,10 +19,13 @@ function buildNavbar($currentPage = '') {
         $navbar->AddItem('', 'admin/produit', 'center', '', 'bi bi-box-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Ajouter un produit');
         $navbar->AddItem('', 'admin/image', 'center', '', 'bi bi-image" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Ajouter une image');
         $navbar->AddItem('', 'panier', 'right', '', 'bi bi-cart3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-right" title="Panier');
-
+        $navbar->AddItem('Moi', 'moi', 'right', '', '');
         $navbar->AddItem('', 'javascript:location.replace("/logout")', 'right', '', 'bi bi-door-open-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-red" title="Déconnexion');
+    } elseif ($currentPage === 'register') {
+        $navbar->AddItem('','login','right', $currentPage === 'login', 'bi bi-person-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-right" title="Connexion');
+    } elseif ($currentPage === 'login') {
+        $navbar->AddItem('Inscription','register','right', $currentPage === 'register', '');
     } else {
-        $navbar->AddItem('','', 'center', $currentPage === 'home', 'bi bi-house-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Accueil');
         $navbar->AddItem('Catégories', 'categories', 'center', $currentPage === 'categories', '');   
         $navbar->AddItem('Produits', 'produits', 'center', $currentPage === 'produits', '');
         $navbar->AddItem('Galerie', 'images', 'center', $currentPage === 'images', '');
@@ -37,14 +40,15 @@ function buildNavbar($currentPage = '') {
     return $navbar;
 }
 
-function authNavbar($currentPage = '') {
+/*function authNavbar($currentPage = '') {
     $navbar = new Navbar();
     $navbar->AddItem('e-com ECOM','', 'left', '', '');
     $navbar->AddItem('','', 'center', $currentPage === 'home', 'bi bi-house-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip" title="Accueil');
+
     if ($currentPage === 'register') {
         $navbar->AddItem('','login','right', $currentPage === 'login', 'bi bi-person-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="super-tooltip-right" title="Connexion');
     } else {
         $navbar->AddItem('Inscription','register','right', $currentPage === 'register', '');
     }
     return $navbar;
-}
+}*/
