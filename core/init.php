@@ -7,6 +7,8 @@ $configFile = __DIR__ . '/app/config/database.php';
 if (file_exists($configFile)) {
     require_once $configFile;
 }
+
+require dirname(__DIR__) . '/app/config/config.php';
 require dirname(__DIR__) . '/app/Views/partials/navbarBuilder.php'; 
 require dirname(__DIR__) . '/app/coreTemp/session.php';
 require dirname(__DIR__) . '/app/Models/Requetes/ProduitModel.php';
