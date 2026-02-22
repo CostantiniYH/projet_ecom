@@ -18,7 +18,7 @@
                 foreach ($produitID as $row => $value) {
                 ?>
                     <div class="col-md-4" data-aos="fade-up" data-aos-duration="2000">
-                        <?php require __DIR__ . '/components/card.php'; ?> </br>
+                        <?php require dirname(__DIR__) . '/components/card.php'; ?> </br>
                     </div>
                 <?php 
                 }
@@ -27,7 +27,7 @@
                 ?>
                     <div class="col-md-4" data-aos="fade-up" data-aos-duration="2000" data-bs-toggle="
                     tooltip" data-bs-placement="top" title="<?= $value['nom'] ?>">
-                        <?php require __DIR__ . '/components/card.php'; ?> 
+                        <?php require dirname(__DIR__) . '/components/card.php'; ?> 
                         </br>
                     </div>
                 <?php 

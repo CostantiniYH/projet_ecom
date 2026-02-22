@@ -1,5 +1,5 @@
 <?php
-namespace App\Classes;
+namespace App\Models\Classes;
 class Upload {
     private $file;
     private $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif', 'bmp', 'pdf');
@@ -14,9 +14,11 @@ class Upload {
     public function getError() {
         return $this->error;
     }
+
     public function setError($error) {
         return array_push($this->error, $error);
     }
+    
     public function getUploadErrorMessage($errorCode) {
         $errorMessages = [
             UPLOAD_ERR_OK => "Aucune erreur.",

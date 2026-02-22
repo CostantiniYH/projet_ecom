@@ -45,7 +45,7 @@ function findBy1 ($pdo, $table, $champ, $id) {
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$id]);
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
         echo "Erreur : " .$e->getMessage();
     }

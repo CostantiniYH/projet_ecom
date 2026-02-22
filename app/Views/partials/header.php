@@ -1,8 +1,9 @@
 <header>
     <?php
-    require_once __DIR__ . '/navbarBuilder.php'; 
-
-    $navbar->render(); 
+    // require_once __DIR__ . '/navbarBuilder.php'; 
+    // $navbar->render(); 
+    
+    require_once dirname(__DIR__) . '/components/navbar_b.php';
     
     
     $currentUrl = $_SERVER['REQUEST_URI'];
@@ -24,7 +25,7 @@
     ?>
 
     <?php if ($currentPage === 'home' || $currentPage === 'accueil'): ?>
-        <div class="carousel-container shadow position-relative rounded-bottom-5" style=" overflow: hidden; width: 100%; height: 20rem;"
+        <div class="carousel-container shadow position-relative rounded-bottom-5" style=" overflow: hidden; width: 100%; height: 15rem;"
         data-aos="zoom-in" data-aos-duration="1000">
             <?php
                 $carousel = new App\Views\Components\Carousel;
@@ -35,12 +36,13 @@
         </div>  
     <?php endif; ?>
 
-    <?php require __DIR__ . '/../components/alerts.php'; ?>
-            
+    
     <p class="container mt-5">
         <a class="text-dark" href="<?= BASE_URL ?>">Accueil</a>
         <?php if ($currentPage !== 'accueil') : ?>
             / <?= $currentPageLabel ?>
         <?php endif; ?>
     </p>
+
+    <?php require dirname(__DIR__) . '/components/alerts.php'; ?>
 </header>

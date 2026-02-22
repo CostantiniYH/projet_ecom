@@ -5,12 +5,12 @@
 
             $a = [];
 
-            $files = glob('./uploads/' . $categorie['nom'] . '/*.{jpg}', GLOB_BRACE);
+            $files = glob('uploads/' . $categorie['nom'] . '/*.{jpg}', GLOB_BRACE);
             foreach ($files as $file) {
                 $fileName = basename($file, pathinfo($file, PATHINFO_EXTENSION));
                 $text = ucwords(str_replace(['_', '-', '.'], ' ', $fileName));
                 $a[] = [
-                    'link' => $file,
+                    'link' => BASE_URL . $file,
                     'text' => $text,
                     'id' => $categorie['id']
                 ];
@@ -23,7 +23,7 @@
      alt="..." style="width: 20rem; height: 150px; overflow: hidden;" usemap="#map<?= $categorie['id']; ?>">-->
 
     <map name="map<?= $categorie['id']; ?>">
-        <area shape="rect" coords="0,0,350,400" href="<?= BASE_URL ?>produits?id=<?= $categorie['id']; ?>">
+        <area shape="rect" coords="0,0,350,400" href="<?= BASE_URL ?>produit/liste?id=<?= $categorie['id']; ?>">
     </map>
     <div class="card-body">
         <h5 class="card-title mt-2"><?= $categorie['nom'] ?></h5>

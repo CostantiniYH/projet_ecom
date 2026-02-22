@@ -15,14 +15,23 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
 
         foreach (Route::getRoutes() as $route) {
-            if ($route['method'] === $method && $route['path'] === $uri) {
+            if ($route['method'] !== $method) continue;
+
+            // Convertit {id} en groupe de capture regex
+            $pattern = preg_replace('/\{[^}]+\}/', '([^/]+)', $route['path']);
+            $pattern = '#^' . $pattern . '$#';
+
+            if (preg_match($pattern, $uri, $matches)) {
+                array_shift($matches); 
+                $params = $matches;    
+
                 foreach ($route['middleware'] as $middlewareName) {
                     $middlewareClass = 'App\\Middlewares\\' . ucfirst($middlewareName) . "Middleware";
                     $middleware = new $middlewareClass();
                     $middleware->handle();
                 }
 
-                $this->callHandler($route['handler']);
+                $this->callHandler($route['handler'], $params);
                 return;
             }
         }
@@ -30,17 +39,17 @@ class Router
         echo "404 - Page non trouvé";
     }
 
-    private function callHandler($handler)
+    private function callHandler($handler, $params = [])
     {
         if (is_string($handler) && str_contains($handler, '@')) {
             list($controllerPath, $method) = explode('@', $handler);
             $controllerClass = 'App\\Controllers\\' . str_replace('/', '\\', $controllerPath);
             $controllerObj = new $controllerClass($this->pdo);
-            $controllerObj->$method($this->pdo);
+            $controllerObj->$method(...$params);
         }
 
         if (is_callable($handler)) {
-            $handler();
+            $handler(...$params);
         }
     }
 }

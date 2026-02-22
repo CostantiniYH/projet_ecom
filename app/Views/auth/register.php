@@ -1,5 +1,5 @@
 <div class="container mt-5 mb-5">
-    <form action="/register" method="post" class="p-5 col-md-6 mb-5 shadow-lg
+    <form action="<?= BASE_URL ?>auth/register" method="post" class="p-5 col-md-6 mb-5 shadow-lg
     rounded-3 border-blue mx-auto" enctype="multipart/form-data">
         <h2 class="text-center"><?= $user ? 'Modifier votre profil' : 'Inscription' ?></h2>
         <div class="form-group mb-2">
@@ -42,7 +42,7 @@
             </div>
         <?php } else { ?>
             <div class="form-group text-center">
-                <input type="submit" class="col-sm-12 btn btn-success" value="Modifier les informations">
+                <input type="submit" name="register" class="col-sm-12 btn btn-success" value="Modifier les informations">
             </div>
         <?php } ?>
     </form>

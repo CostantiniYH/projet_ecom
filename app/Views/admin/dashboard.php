@@ -1,47 +1,8 @@
-<?php
-require_login();
-
-if (isAdmin()) {
-    getUserSession();
-    } else {
-    header('Location: ?erreur=L\'accès est restraint.');
-    exit();
-}
-
-//echo "<pre>";
-//print_r($_SESSION);
-//echo "</pre>";
-use APP\Config\Database;
-$pdo = Database::connect();
-
-
-function produitDash($pdo) {
-    try {
-    $sql = "SELECT p.*, c.nom AS nom_categorie FROM t_produits p
-    INNER JOIN t_categories c ON p.id_categorie = c.id WHERE deleted_at IS NULL";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([]);
-    $produit = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $produit;
-    } catch (PDOException $e) {
-        echo "Erreur : " .$e->getMessage();
-    }
-} 
-
-$categorie = getAll($this->pdo, 't_categories');
-
-$produits = produitDash($pdo);
-$image = getAll2($pdo, 't_images');
-
-if (!isset($_SESSION['user'])) {
-    die("Erreur : utilisateur non connecté.");
-} 
-
-ob_start();
-?>
 <div class="container mt-2">
-    <p class="mt-2 border border-2 border-success p-3 rounded mb-3">Bonjour Administrateur : <?= $_SESSION['user']['email']; ?></p>
-    <h1 class="shadow rounded p-4 border-start border-end border-2 border-success">Dashboard admin de : <?= $_SESSION['user']['nom']; ?> <?php echo $_SESSION['user']['prenom']; ?></h1>
+    <p class="mt-2 border border-2 border-success p-3 rounded mb-3">Bonjour Administrateur : 
+        <?= $_SESSION['user']['email']; ?></p>
+    <h1 class="shadow rounded p-4 border-start border-end border-2 border-success">Dashboard admin de : 
+        <?= $_SESSION['user']['nom']; ?> <?php echo $_SESSION['user']['prenom']; ?></h1>
 
     <?php
         if (isset($_GET['deploy']) && isset($_SESSION['deploy_result'])) {
@@ -68,7 +29,7 @@ ob_start();
     ?>
         <div class="mb-3 p-3 border border-2 border-info rounded shadow text-center">
             <form method="POST" action="<?= BASE_URL ?>controllers/deploy.php">
-                <h3>Cliquer ici pour lancer le déployer</h3>
+                <h3>Cliquer ici pour lancer le déployement</h3>
                 <label for="remote">Sélectionner un remote :</label>
                 <div class="d-flex col-md-3 mx-auto mt-3 mb-3">
                     <select class=" mx-auto form-select" name="remote" id="remote" aria-label="Defaullt select example">
@@ -252,7 +213,7 @@ ob_start();
     </div>
 </div>
 <script>
-    fetch('BASE_URL + controllers/deploy.php', { method: 'POST', body: new URLSearchParams({ token: 'MON_TOKEN' }) })
+    fetch('BASE_URL + coreTemp/deploy.php', { method: 'POST', body: new URLSearchParams({ token: 'MON_TOKEN' }) })
         .then(res => res.json())
         .then(data => {
             if (data.status === 'ok') {
@@ -263,8 +224,3 @@ ob_start();
             }
     });
 </script>
-<?php 
-$content = ob_get_clean(); 
-$titre = "Dashboard admin";
-require_once __DIR__ . '/../partials/layout.php';
-?>      

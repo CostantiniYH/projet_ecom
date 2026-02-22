@@ -9,10 +9,10 @@ class HomeController
         $this->pdo = $pdo;
     }
 
-    public function index($pdo) {
+    public function index() {
         $navbar = buildNavbar('home');
       
-        $categories = getAll ($pdo, 't_categories');                
+        $categories = getAll ($this->pdo, 't_categories');                
         $a = [];        
         foreach ($categories as $categorie) {
             $files = glob('uploads/' . $categorie['nom'] . '/*.{jpg}', GLOB_BRACE);            

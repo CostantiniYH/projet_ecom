@@ -1,30 +1,8 @@
-<?php
-require_login();
-
-if (isLoggedIn()) {
-    echo "Vous êtes connecté";
-}
-
-use App\Config\Database;
-$pdo = Database::connect();
-$categories = getAll($pdo, 't_categories');
-$images = getAll($pdo, 't_images');
-
-$id = isset($_GET['id']) ? intval($_GET['id']) : null;
-
-$image = null;
-if ($id) {
-    $image = findBy ($pdo, 't_images', 'id', $id);
-    $image = $image[0] ?? null;
-}
-
-ob_start();
-?>
 <div class="container mb-5 mt-5">
     <h1 class="mb-5 shadow rounded-4 border-start border-end border-2 border-success">Gestion de la galerie</h1>
 
     <div class="row mb-4 gap-4">
-        <form action="<?= BASE_URL ?>controllers/Create-Update/image.php" method="post" class="col-md-5 mb-5 p-2 shadow-lg
+        <form action="<?= BASE_URL ?>image/traitement" method="post" class="col-md-5 mb-5 p-2 shadow-lg
          rounded-4 border border-1 border-success" data-aos="zoom-in" enctype="multipart/form-data">
             <?php if ($id) { ?>
                 <input type="hidden" name="id" value="<?= htmlspecialchars($image['id']) ?>">
@@ -60,15 +38,10 @@ ob_start();
             <div class="row">
             <?php foreach ($images as $image => $value) { ?>
                 <div class="col-md-3 mb-2">
-                    <?php require __DIR__ . '/../../components/image.php'; ?>
+                    <?php require dirname(__DIR__) . '/components/image.php'; ?>
                 </div>
             <?php } ?>
             </div>
         </div>                    
     </div>
 </div>
-<?php 
-$content = ob_get_clean(); 
-$titre = "Ajouter/Modifier une image";
-require_once __DIR__ . '/../partials/layout.php';
-?>      

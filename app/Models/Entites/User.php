@@ -71,7 +71,7 @@ class User {
 
     public static function verifyEmail($email) {
         $pdo = Database::connect();
-        $value = findBy2 ($pdo, '*', 't_users',  'email', $email);
+        $value = findBy1 ($pdo, 't_users',  'email', $email);
 
         if (is_array($value) && count($value) >= 1) {
             return true;
