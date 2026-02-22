@@ -4,7 +4,7 @@
         <h1 class="">Produit</h1>
         <div class="col-12 m-4">
             <?php
-                require_once __DIR__ . '/components/one_card.php';
+                require_once dirname(__DIR__) . '/components/one_card.php';
             ?>
         </div>                  
     </div>

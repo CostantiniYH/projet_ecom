@@ -2,7 +2,7 @@
         <!-- Breadcrumb -->
         <nav class="breadcrumb">
             <a href="<?= BASE_URL ?>" class="hvr-underline-from-center">Home /</a> 
-            <a href="categories" class="hvr-underline-from-center"><?= $one['nom_categorie'] ?> /</a> 
+            <a href="<?= BASE_URL ?>categories" class="hvr-underline-from-center"><?= $one['nom_categorie'] ?> /</a> 
             <a href="produits" class="hvr-underline-from-center">Produits /</a> 
             <span><?= $one['nom']; ?></span>
         </nav>
@@ -11,11 +11,11 @@
         <div class="product-detail">
             <!-- Images -->
             <div class="product-images">
-                <img src="<?= $one['image'];?>" alt="Main Product Image"
+                <img src="<?= BASE_URL .  $one['image'];?>" alt="Main Product Image"
                     class="main-image">
                 <div class="thumbnail-images">
-                    <img src="<?= $one['image'];?>" alt="Thumbnail 1">
-                    <img src="<?= $one['image'];?>" alt="Thumbnail 2">
+                    <img src="<?= BASE_URL .  $one['image'];?>" alt="Thumbnail 1">
+                    <img src="<?= BASE_URL .  $one['image'];?>" alt="Thumbnail 2">
                 </div>
             </div>
             
@@ -101,12 +101,12 @@
         <div class="related-products">
             <h2>Produits associés</h2>
             <div class="product">
-                <img src="<?= $one['image'];?>" alt="Product 1">
+                <img src="<?= BASE_URL .  $one['image'];?>" alt="Product 1">
                 <p><?= $one['nom']; ?></p>
                 <p><?= $one['prix']; ?><?= $one ['devise']; ?></p>
             </div>
             <div class="product">
-                <img src="<?= $one['image'];?>" alt="Product 2">
+                <img src="<?= BASE_URL .  $one['image'];?>" alt="Product 2">
                 <p><?= $one['nom']; ?></p>
                 <p><?= $one['prix']; ?><?= $one ['devise']; ?></p>
             </div>
