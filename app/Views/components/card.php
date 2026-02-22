@@ -2,7 +2,7 @@
   <img src="<?= BASE_URL . $value['image']; ?>" class="card-img-top card-img" 
   alt="<?= $value['nom']; ?>" style="height: 200px; object-fit: cover;" usemap="#map<?= $value['id']; ?>">
   <map name="map<?= $value['id']; ?>">
-    <area shape="rect" coords="0,0,300,200" href="<?= BASE_URL ?>produit_one?id=<?= $value['id']; ?>"
+    <area shape="rect" coords="0,0,300,200" href="<?= BASE_URL ?>produit/<?= $value['id']; ?>"
      <?= $value['status'] == "0" ? 'aria-disabled="true" onclick="return false;"' : "" ?>>
   </map>
   <div class="card-body">

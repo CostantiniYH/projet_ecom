@@ -5,7 +5,7 @@
     </h1>
 
     <div class="row mb-4 gap-4">
-        <form action="/form_produit" method="post" class="col-md-5 mb-5 p-2 shadow-lg
+        <form action="<?= BASE_URL ?>produit/traitement" method="post" class="col-md-5 mb-5 p-2 shadow-lg
          rounded-4 border border-1 border-success" data-aos="zoom-in" enctype="multipart/form-data">
          <?php if ($id) { ?>
             <h2 class="text-center">Modifier le produit</h2>
@@ -65,13 +65,10 @@
             <div class="row gy-4">
             <?php foreach ($produits as $produit => $value) { ?>
                 <div class="col-md-4">
-                    <?php require __DIR__ . '/../../components/mini_card.php'; ?>
+                    <?php require dirname(__DIR__) . '/components/mini_card.php'; ?>
                 </div>
             <?php } ?>
             </div>
         </div>                    
     </div>    
 </div>
-<?php
-require_once __DIR__ . '/../../components/footer.php';
-?>

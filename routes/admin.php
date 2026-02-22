@@ -1,4 +1,4 @@
 <?php
 use Core\Routing\Route;
 
-Route::get('/dashboard_admin', 'AdminController@dashboard');
+Route::get('/admin/dashboard', 'AdminController@dashboard');

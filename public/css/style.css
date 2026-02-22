@@ -92,8 +92,7 @@ h1, h2 {
 }
 .navbar-item.active a{
     font-weight: bold;
-   /* border: 2px solid rgb(253, 172, 78);*/
-   box-shadow: 0px 0px 3px 1px rgb(0, 200, 255);
+    box-shadow: 0px 0px 3px 1px rgb(0, 200, 255);
     color: rgb(0, 0, 0);
 }
 
