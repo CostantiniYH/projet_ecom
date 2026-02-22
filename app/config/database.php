@@ -1,28 +1,20 @@
 <?php
 namespace App\Config;
-
-if (!defined('BASE_URL')) {
-        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
-        $host = $_SERVER['HTTP_HOST'];
-
-       if ($host === 'localhost' || $host === '127.0.0.1') {
-        define('BASE_URL', $protocol . '://' . $host . '/projet_yhc/public/');
-        } else {
-            define('BASE_URL', $protocol . '://' . $host . '/');
-        }
-}
-
 use PDO;
 use Exception;
 
 class Database {
     public static function connect () {
-        try {
-            $dsn = "mysql:host=localhost;dbname=yhc";
-            $user = "YHC";
-            $passwd = "";
+        $host   =   $_ENV['DB_HOST'];
+        $type   =   $_ENV['DB_TYPE'];  
+        $user   =   $_ENV['DB_USER'];  
+        $pass   =   $_ENV['DB_PASS'];  
+        $db     =   $_ENV['DB_NAME']; 
 
-            $pdo = new PDO($dsn, $user, $passwd);
+        $dsn = "$type:host=$host;dbname=$db";
+        try {
+
+            $pdo = new PDO($dsn, $user, $pass);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             return $pdo;
