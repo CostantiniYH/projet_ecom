@@ -15,7 +15,10 @@ class CategorieController
     }
 
     public function index() {
+        // Affichage de la liste des catégories
+
         $pdo = $this->pdo;
+
         $navbar = buildNavbar('categories');
         $titre = "Catégories";
         
@@ -41,10 +44,13 @@ class CategorieController
     }
 
     public function show($id) {
+        // Affichage du détail d'une catégorie
 
     }
 
     public function create() {
+        // Formulaire de la création de la catégorie
+
         $pdo = $this->pdo;
 
         require_login();
@@ -72,6 +78,8 @@ class CategorieController
     }
 
     public function store() {
+        // Traitement de la création de la catégorie
+
         $pdo = $this->pdo;
 
         // Bloquer le traitement si la méthode HTTP n'est pas  POST
@@ -170,6 +178,8 @@ class CategorieController
     }
 
      public function edit($id) {
+        // Formulaire de modification
+
         $titre = "";
 
         ob_start();
@@ -179,15 +189,19 @@ class CategorieController
     }
 
      public function update($id) {
-        $titre = "";
+        // Traitement du formulaire de modification (Mise-à-jour)
 
-        ob_start();
-        require dirname(__DIR__) . "Views/categorie/edit.categorie.php";
-        $content = ob_get_clean();
-        require dirname(__DIR__) . "Views/partials/layout.php";
     }
-    public function delete($id) {        
+
+    public function delete($id) {
+        // Traitement de suppression de la donnée
+
         $pdo = $this->pdo;
+
+         if (!isAdmin()) {
+            echo "Accès interdit !";
+            exit;
+        }
 
         $id = $_GET['id'];
 
@@ -197,21 +211,21 @@ class CategorieController
             $categorieNom = $categorie['nom'];
             
             if ($categorie) {
-                delete($pdo, 't_categories', $id);
-            // var_dump(delete($connect, 't_categories', $id, true));
-            // exit();
-                if (isAdmin()) {
-                    header('Location: ' . BASE_URL . 'admin/dashboard.php?success=' . urlencode("categorie $categorieNom supprimé avec succès !"));
+                if(delete($pdo, 't_categories', $id) !== false) {
+                    if (isAdmin()) {
+                        header("Location: " . BASE_URL . "admin/dashboard?success=" . urlencode("Categorie : $categorieNom supprimé avec succès !"));
+                        exit;
+                    }
                 } else {
-                    header('Location: ' . BASE_URL . 'compte/dashboard.php?success=' . urlencode("Votre categorie $categorieNom a été supprimé avec succès !"));
+                    header("Location: " . BASE_URL . "admin/dashboard?erreur=" . urlencode("Une erreur s'est produite lors de la suppression de la catégorie : $categorieNom."));
+                    exit;
                 }
-                exit();
             } else {
-                header('Location: ' . BASE_URL . 'compte/dashboard.php?erreur=categorie introuvable.');
+                header("Location: " . BASE_URL . "admin/dashboard?erreur=Categorie introuvable.");
                 exit();
             }
         } else {
-            header('Location: ' . BASE_URL . 'compte/dashboard.php?erreur=ID categorie manquant.');
+            header("Location: " . BASE_URL . "compte/dashboard.php?erreur=ID categorie manquant.");
             exit();
         }
     }

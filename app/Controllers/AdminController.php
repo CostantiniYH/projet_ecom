@@ -16,18 +16,18 @@ class AdminController
         $pdo = $this->pdo;
         // Bloquer la page aux utiliateurs non connectés
         require_login();
+        
+        // Interdire la page aux utilisateurs non admin
+        if (isAdmin()) {
+            getUserSession();
+        } else {
+            header("Location: login?erreur=L'accès est restraint.");
+            exit;
+        }
 
         // Vérification que les données de sessions ont bien été enregistrées
         if (!isset($_SESSION['user'])) {
             die("Erreur : utilisateur non connecté.");
-        }
-
-        // Interdire la page aux utilisateurs non admin
-        if (isAdmin()) {
-            getUserSession();
-            } else {
-            header("Location: login?erreur=L'accès est restraint.");
-            exit();
         }
 
         // Récupérer tous les produits non-archivés pour admin
@@ -60,8 +60,8 @@ class AdminController
         $titre = "Dashboard admin";
         
         ob_start();
-        require_once __DIR__ . '/../Views/admin/dashboard.php';
+        require dirname(__DIR__) . '/Views/admin/dashboard.php';
         $content = ob_get_clean();
-        require __DIR__ . '/../Views/partials/layout.php';     
+        require dirname(__DIR__) . '/Views/partials/layout.php';     
     }    
 }

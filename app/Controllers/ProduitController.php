@@ -14,6 +14,8 @@ class ProduitController
 
 
     public function index() {
+        // Affichage de la liste des catégories
+
         $pdo = $this->pdo;
 
         $navbar = buildNavbar('produits');
@@ -31,6 +33,8 @@ class ProduitController
     }
 
     public function show($id) {
+        // Affichage du détail d'un produit
+
         $pdo = $this->pdo;
 
         $navbar = buildNavbar('détail_produits');
@@ -46,8 +50,11 @@ class ProduitController
     }
 
     public function create() {
+        // Formulaire de création du produit
+
         $pdo = $this->pdo;
 
+        // Bloquer la page aux visiteurs
         require_login();
 
         $categories = getAll($pdo, 't_categories');
@@ -73,7 +80,9 @@ class ProduitController
         require dirname(__DIR__) . '/Views/partials/layout.php';
     }
 
-    public function store() {   
+    public function store() {
+        // Traitement des données de la création du produits
+
         $pdo = $this->pdo;
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -95,9 +104,6 @@ class ProduitController
                 $uploadDir = 'uploads/';
                 $uploadPath = dirname(__DIR__, 2) . '/public/uploads/';
 
-                var_dump($uploadDir);
-                var_dump($uploadPath); 
-
 
                 if (!is_dir($uploadPath)) {
                     mkdir($uploadPath, 0777, true); // Crée le dossier avec les bonnes permissions
@@ -107,7 +113,7 @@ class ProduitController
                 true)) {
                     header('Location: ' . BASE_URL . 'produit/formulaire?erreur=Impossible de créer le dossier 
                     uploads principal !');
-                    exit();
+                    exit;
                 }
 
                 if (!is_writable($uploadPath)) {
@@ -117,9 +123,6 @@ class ProduitController
                 $categorieClean = preg_replace('/[^a-zA-Z0-9_-]/', '_', $nom_categorie);
                 $categoriePath = $uploadPath . $categorieClean . '/';
 
-                var_dump($categorieClean);
-                var_dump($categoriePath);
-
                 
                 if (!is_dir($categoriePath)) {
                     mkdir($categoriePath, 0775, true); // Crée le dossier de la catégorie avec les bonnes permissions
@@ -127,7 +130,7 @@ class ProduitController
                 
                 if (!is_dir($categoriePath) && !mkdir($categoriePath, 0775, true)) {
                     header('Location: ' . BASE_URL . 'produit/formulaire?erreur=Impossible de créer le dossier ' . $categorieClean . '!');
-                    exit();
+                    exit;
                 }                
 
                 if (!file_exists($_FILES['image']['tmp_name'])) {
@@ -136,13 +139,7 @@ class ProduitController
 
                 $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
                 $fileName = uniqid('img_') . '.' . $ext;
-                $destination = $categoriePath . '/' . $fileName;
-
-                var_dump($ext);
-                var_dump($fileName);
-                var_dump($destination);
-
-    
+                $destination = $categoriePath . '/' . $fileName;    
                 
                 if ($upload->moveTo($destination)) {
                     echo "Fichier uploadé avec succès ! <br>";
@@ -159,9 +156,6 @@ class ProduitController
             $categorieDir = $uploadDir . $categorieClean . '/';
             $imageUrl = $categorieDir . $fileName;
             
-            var_dump($categorieDir);
-            var_dump($imageUrl);
-            
             $data = [
                 'nom' => $produit->getNom(),
                 'prix' => $produit->getPrix(),
@@ -171,60 +165,62 @@ class ProduitController
                 'id_categorie' => $produit->getCategorie(),
                 'image' => $imageUrl,
                 'id_user' => $userId
-            ];
-
-            var_dump($data);            
+            ];   
 
             if (insert($pdo,'t_produits', $data) !== false) {
                 header('Location: ' . BASE_URL . 'produit/formulaire?success=Produit ajouté avec succès !');
-                exit();
+                exit;
             } else {
                 header('Location: ' . BASE_URL . 'produit/formulaire?erreur=Le produit n\'a pas pu être ajouté.' ) ;
-                exit();
+                exit;
             }
         }
     }
 
 
     public function edit($id) {
+        // Formulaire de modification
+
         $titre = "";
 
         ob_start();
-        require dirname(__DIR__) . "Views/admin/.php";
+        require dirname(__DIR__) . "Views/produits/edit.produit.php";
         $content = ob_get_clean();
         require dirname(__DIR__) . "Views/partials/layout.php";
     }
 
-     public function update($id) {
+    public function update($id) {
+        // Traitement du formulaire de modification (Mise-à-jour)
+
         
     }
 
      public function delete($id) {
-        require_once __DIR__ . '/../../controllers/session.php';
+        // Traitement de suppression de la donnée
+
+        $pdo = $this->pdo;
 
         $id = $_GET['id'];
 
         if ($id) {
-            $produit = findBy1($connect, 't_produits', 'id', $id);
+            $produit = findBy1($pdo, 't_produits', 'id', $id);
             $produit = $produit[0] ?? null;
             $produitNom = $produit['nom'];
             
             if ($produit) {
-                delete($connect, 't_produits', $id, true);
-            // var_dump(delete($connect, 't_produits', $id, true));
-            // exit();
+                delete($pdo, 't_produits', $id, true);
                 if (isAdmin()) {
                     header('Location: ' . BASE_URL . 'admin/dashboard.php?success=' . urlencode("Produit $produitNom supprimé avec succès !"));
                 } else {
-                    header('Location: ' . BASE_URL . 'compte/dashboard.php?success=' . urlencode("Votre produit $produitNom a été supprimé avec succès !"));
+                    header('Location: ' . BASE_URL . 'user/dashboard.php?success=' . urlencode("Votre produit $produitNom a été supprimé avec succès !"));
                 }
                 exit();
             } else {
-                header('Location: ' . BASE_URL . 'compte/dashboard.php?erreur=Produit introuvable.');
+                header('Location: ' . BASE_URL . 'user/dashboard.php?erreur=Produit introuvable.');
                 exit();
             }
         } else {
-            header('Location: ' . BASE_URL . 'compte/dashboard.php?erreur=ID produit manquant.');
+            header('Location: ' . BASE_URL . 'user/dashboard.php?erreur=ID produit manquant.');
             exit();
         }
     }

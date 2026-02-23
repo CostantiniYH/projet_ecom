@@ -13,6 +13,8 @@ class ImageController
 
 
     public function index() {
+        // Affichage de la liste de la galerie
+
         $pdo = $this->pdo;
 
         $navbar = buildNavbar('images');
@@ -28,16 +30,18 @@ class ImageController
     }
 
     public function show($id) {
+        // Affichage du détail d'une image
+
 
     }
 
     public function create() {
-        $pdo = $this->pdo;
-        require_login();
+        // Formulaire du téléchargement de l'image
 
-        if (isLoggedIn()) {
-            echo "Vous êtes connecté";
-        }
+        $pdo = $this->pdo;
+
+        // Bloquer la page aux visiteurs
+        require_login();
 
         $categories = getAll($pdo, 't_categories');
         $images = getAll($pdo, 't_images');
@@ -50,7 +54,7 @@ class ImageController
             $image = $image[0] ?? null;
         }
 
-        $titre = "Ajouter/Modifier une image";
+        $titre = "Ajouter une image";
 
         ob_start();
         require dirname(__DIR__) . '/Views/galerie/edit.image.php';
@@ -59,6 +63,8 @@ class ImageController
     }
 
     public function store() {
+        // Traitement du téléchargement de l'image
+
         $pdo = $this->pdo;
         if (!empty($_POST) && $_SERVER["REQUEST_METHOD"] === "POST") {
             
@@ -143,15 +149,42 @@ class ImageController
     }
 
     public function edit($id) {
+        // Formulaire de modification
 
+        $pdo = $this->pdo;
+
+        // Bloquer la page aux visiteurs
+        require_login();
+
+        $categories = getAll($pdo, 't_categories');
+        $images = getAll($pdo, 't_images');
+
+        $id = isset($_GET['id']) ? intval($_GET['id']) : null;
+
+        $image = null;
+        if ($id) {
+            $image = findBy ($pdo, 't_images', 'id', $id);
+            $image = $image[0] ?? null;
+        }
+
+        $titre = "Modifier une image";
+
+        ob_start();
+        require dirname(__DIR__) . '/Views/galerie/edit.image.php';
+        $content = ob_get_clean(); 
+        require dirname(__DIR__) . '/Views/partials/layout.php';
     }
 
-     public function update($id) {
+    public function update($id) {
+        // Traitement du formulaire de modification (Mise-à-jour)
+
         
     }
 
-     public function delete($id) {        
-        require_once __DIR__ . '/../../controllers/session.php';
+     public function delete($id) {
+        // Traitement de suppression de la donnée
+
+        $pdo = $this->pdo;
 
         $id = $_GET['id'];
 
@@ -161,22 +194,20 @@ class ImageController
             $imageNom = $image['nom'];
             
             if ($image) {
-                delete($pdo, 't_images', $id);
-            // var_dump(delete($connect, 't_images', $id, true));
-            // exit();
-                if (isAdmin()) {
-                    header('Location: ' . BASE_URL . 'admin/dashboard.php?success=' . urlencode("image $imageNom supprimé avec succès !"));
+                if (delete($pdo, 't_images', $id) !== false) {
+                    header('Location: ' . BASE_URL . 'user/dashboard?success=' . urlencode("Votre image $imageNom a été bien été supprimée."));
+                    exit;
                 } else {
-                    header('Location: ' . BASE_URL . 'compte/dashboard.php?success=' . urlencode("Votre image $imageNom a été supprimé avec succès !"));
+                    header('Location: ' . BASE_URL . 'user/dashboard?erreur=' . urlencode("Une erreur s'est produite."));                    
+                    exit;
                 }
-                exit();
             } else {
-                header('Location: ' . BASE_URL . 'compte/dashboard.php?erreur=image introuvable.');
-                exit();
+                header('Location: ' . BASE_URL . 'user/dashboard?erreur=image introuvable.');
+                exit;
             }
         } else {
-            header('Location: ' . BASE_URL . 'compte/dashboard.php?erreur=ID image manquant.');
-            exit();
+            header('Location: ' . BASE_URL . 'user/dashboard?erreur=ID image manquant.');
+            exit;
         }
     }
 }

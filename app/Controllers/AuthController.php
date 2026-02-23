@@ -18,9 +18,9 @@ class AuthController
         $titre = "Connexion";
 
         ob_start(); 
-        require_once __DIR__ . '/../Views/auth/login.php';       
+        require dirname(__DIR__) . '/../Views/auth/login.php';       
         $content = ob_get_clean();
-        require_once __DIR__ . '/../Views/partials/layout.php';
+        require dirname(__DIR__) . '/../Views/partials/layout.php';
     }
 
 
@@ -51,7 +51,7 @@ class AuthController
                     header("Location: " . BASE_URL . "admin/dashboard?success=Vous êtes connecté en tant qu'administrateur.");
                     exit;
                 } 
-                header ("Location: " . BASE_URL . "dashboard?success=Connexion réussi !");
+                header ("Location: " . BASE_URL . "user/dashboard?success=Connexion réussi !");
                 exit;
             } else {
                 header("Location: " . BASE_URL . "login?erreur=Le mot de passe est incorrecte !");
@@ -111,7 +111,7 @@ class AuthController
             $upload = new Upload($_FILES['image']);
             if ($upload->validate()) {
                 $uploadDir = 'uploads/';
-                $uploadPath = __DIR__ . '/../../uploads/';
+                $uploadPath = dirname(__DIR__, 2) . '/public/uploads/';
 
                 if (!is_dir($uploadPath)) {
                     mkdir($uploadPath, 0777, true); // Crée le dossier avec les bonnes permissions
@@ -175,33 +175,20 @@ class AuthController
                 'photo' => $imageUrl
             ];
             
-            if (!empty($id)) {
-                
-                $data['id'] = $id;   
-                
-                $update = update($pdo, 't_users', $data, 'id', $id);
-                
-                if ($update) {
-                    header("Location: " . BASE_URL . "user/dashboard?success=Votre profil a été mis à jour avec succès !");
-                    exit();
-                } else {
-                    echo "Erreur lors de la modification de votre profil !";
-                    exit();
-                }
-            } else {   
-                insert($pdo,'t_users', $data);
-                
+            if (insert($pdo,'t_users', $data) !== false) {                
                 header("Location: " . BASE_URL . "auth/login?success=Votre compte utilisateur a été créé avec succès !");
-                exit();
-            } 
+                exit;
+            } else {
+                header("Location: " . BASE_URL . "auth/login?erreur=Une erreur s'est produite lors de la création de votre compte, réessayez.");
+                exit;
+            }
         } else {
-            header( "Location: " . BASE_URL . "auth/register?erreur=Le compte n'a pas pu être créé." ) ;
+            header( "Location: " . BASE_URL . "auth/register?erreur=Les données n'ont pas été envoyé correctement, veillez réessayer." ) ;
             exit();
         }
     }
 
     public function logout() {
-        require __DIR__ . '/../coreTemp/session.php';
         logoutUser();
     }
 }

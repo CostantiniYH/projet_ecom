@@ -30,8 +30,8 @@ class HomeController
         $titre = "Accueil";
 
         ob_start(); 
-        require_once dirname(__DIR__) . '/Views/home.php';       
+        require dirname(__DIR__) . '/Views/home.php';       
         $content = ob_get_clean();
-        require_once __DIR__ . '/../Views/partials/layout.php';
+        require dirname(__DIR__) . '/Views/partials/layout.php';
     }
 }
