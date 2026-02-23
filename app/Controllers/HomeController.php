@@ -1,6 +1,6 @@
 <?php
 namespace App\Controllers;
-use App\Views\Components\Carousel;
+use App\Views\components\Carousel;
 
 class HomeController 
 {
