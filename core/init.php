@@ -18,7 +18,7 @@ require_once dirname(__DIR__) . '/routes/auth.php';
 require_once dirname(__DIR__) . '/routes/user.php';
 require_once dirname(__DIR__) . '/routes/admin.php';
 
-use App\Config\Database;
+use App\config\Database;
 $pdo = Database::connect();
 
 use Core\Routing\Router;
