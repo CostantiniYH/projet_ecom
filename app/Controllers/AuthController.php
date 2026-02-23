@@ -18,9 +18,9 @@ class AuthController
         $titre = "Connexion";
 
         ob_start(); 
-        require dirname(__DIR__) . '/../Views/auth/login.php';       
+        require dirname(__DIR__) . '/Views/auth/login.php';       
         $content = ob_get_clean();
-        require dirname(__DIR__) . '/../Views/partials/layout.php';
+        require dirname(__DIR__) . '/Views/partials/layout.php';
     }
 
 
