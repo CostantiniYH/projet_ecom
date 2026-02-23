@@ -6,9 +6,9 @@ use Exception;
 class Database {
     public static function connect () {
         $host   =   $_ENV['DB_HOST'];
-        $type   =   $_ENV['DB_TYPE'];  
-        $user   =   $_ENV['DB_USER'];  
-        $pass   =   $_ENV['DB_PASS'];  
+        $type   =   $_ENV['DB_TYPE'];
+        $user   =   $_ENV['DB_USER'];
+        $pass   =   $_ENV['DB_PASS'];
         $db     =   $_ENV['DB_NAME'];
         $option = [
             PDO::ATTR_ERRMODE               => PDO::ERRMODE_EXCEPTION,
