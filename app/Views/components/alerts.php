@@ -1,4 +1,4 @@
-<div class="container mt-5 mb-5 w-50">
+<div class="container mt-5 mb-5">
     <?php if (isset($_GET['erreur'])): ?>
         <div class="alert alert-danger alert-dismissible fade show" data-bs-dismiss="3000" role="alert">
             <?= htmlspecialchars($_GET['erreur']) ?>

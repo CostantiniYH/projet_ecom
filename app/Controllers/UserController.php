@@ -25,8 +25,8 @@ class UserController
         $id = $_SESSION['user']['id'];
         $user = $_SESSION['user'];        
         $myProduits = findBy($this->pdo, 't_produits', 'id_user', $id);
-        $myImage = findBy($this->pdo, 't_images', 'id_user', $id);
-
+        $myImages = findImageBy2($this->pdo, $id);
+        
         $titre = "Dashboard";
         
         ob_start();

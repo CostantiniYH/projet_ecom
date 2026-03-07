@@ -3,9 +3,9 @@
     <h1 class="shadow rounded p-4">Dashboard <?= $user['nom']; ?> <?= $user['prenom']; ?></h1>
 
     <img class="bandeau rounded-4 shadow" src="<?= BASE_URL . $user['photo']; ?>">
-    <div class="row mt-5 gap-5">
-        <div class="col-md table-responsive">
-            <div class="p-3 shadow rounded border border-1 border-success mb-5">
+    <div class="row mt-5">
+        <div class="col-md">
+            <div class="p-3 h-100 shadow rounded border border-1 border-success mb-3 table-responsive">
                 <table class="table mt-2">
                     <h3>Mes informations</h3>
                     <tr class="">
@@ -33,42 +33,39 @@
                         <td> <img width="100" class="rounded" src="<?= BASE_URL . $user['photo']; ?>"> </td>
                     </tr>
                 </table>
-            </div>
-            <div class="p-3 shadow rounded border border-1 border-success mt-5">
-                <table class="table mt-2">
-                    <h3>Mes images</h3>
+            </div>   
+        </div>         
+        <div class="col-md">
+            <div class="p-3 h-100 shadow rounded border border-1 border-success mb-3 table-responsive">
+                <h3>Mes images</h3>
+                 <div class="row g-3">
+                     <?php foreach ($myImages as $image): ?>
+                     <div class="col-md">
+                        <div class="card h-100">
+                            <div class="card-img-top">
+                                <img class="img-fluid w-100" style="height: 8rem;" src="<?= BASE_URL.$image['image'] ?>" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h5><?= $image['nom'] ?></h5>
+                                <p><?= $image['nom_categorie'] ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach ?>
+                </div>
+              
+            </div>      
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div>
+            <div class="p-2 shadow rounded border border-1 border-success">
+                <h3>Mes produits en cartes</h3>
+                <div class="row">
                     <?php 
-                    if (!empty($myImage[0]) && isset($image[0])) {
-                        $fields = array_keys($myImage[0]);
-                        foreach ($fields as $field) {
-                            $label = preg_replace('/[^a-zA-Z0-9]/', ' ', $field);
-                    ?>                
-                    <tr>
-                        <th><?= ucfirst($label)?></th>
-                        <?php foreach ($myProduits as $mP) { ?>
-                        <td>
-                            <?php if ($field === 'image') { ?>
-                                <img width="100" src="<?= BASE_URL . $mP[$field] ?>">
-                            <?php } else { ?>
-                                <?= $mP[$field]; ?>
-                            <?php } ?>
-                        </td>
-                        <?php } ?>
-                    </tr>
-                    <?php } 
-                } else { ?>
-                <tr>
-                    <td><div class="alert alert-warning alert-dismissible fade show" data-bs-dismiss="3000" role="alert">Vous n'avez pas encore ajouté d'image</div></td>
-                </tr>
-                <?php } ?>
-                </table>
-            </div>
-            <div class="p-3 shadow rounded border border-1 border-success mt-5 row">
-                    <h3>Mes produits en cartes</h3>
-
-                <?php if (!empty($myProduits) && isset($myProduits)) {
+                    if (!empty($myProduits) && isset($myProduits)) {
                         foreach ($myProduits as $value) { ?>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md mb-2">
                                 <div class="card border-0 shadow hvr-shadow-radial position-relative"  style="width: 15rem; height: 12rem;">
                                     <?php if ($value['quantite'] > 0) { ?>
                                         <small class="badge bg-success position-absolute checked" data-bs-dismiss="3000" 
@@ -94,43 +91,75 @@
                                     </div>
                                 </div>
                             </div>
-                    <?php }
+                    <?php 
                         }
-                    else { ?>
+                    } else { ?>
                         <div class="alert alert-warning alert-dismissible fade show" data-bs-dismiss="3000" role="alert">Vous n'avez pas encore ajouté de produit</div>                        
-                <?php } ?>
+                    <?php 
+                    } ?>                
+                </div>
             </div>
-        </div>
-        <div class="p-3 col-md flex-end shadow rounded border border-1 border-success table-responsive">
-            <table class="table">
-                <h3>Mes produits en tableau</h3>
-                <?php
-                if (!empty($myProduits) && isset($myProduits)) {
-                    $fields = array_keys($myProduits[0]);
-                    foreach ($fields as $field) {
-                        $label = preg_replace('/[^a-zA-Z0-9]/', ' ', $field);
-                ?>                
-                <tr>
-                    <th><?= ucfirst($label)?></th>
-                    <?php foreach ($myProduits as $mP) { ?>
-                    <td>
-                        <?php if ($field === 'image') { ?>
-                            <img width="100" src="<?= BASE_URL . $mP[$field] ?>">
-                        <?php } else { ?>
-                            <?= $mP[$field]; ?>
-                        <?php } ?>
-                    </td>
-                    <?php } ?>
-                </tr>
-                <?php }
-                } else { ?>
-                    <tr>
-                        <td>
-                           <div class="alert alert-warning alert-dismissible fade show" data-bs-dismiss="3000" role="alert">Vous n'avez pas encore ajouté de produit</div>
-                        </td>
-                    </tr>
-                    <?php } ?>
-            </table>
         </div>
     </div>
 </div>
+
+
+
+            <!-- <div class="p-3 shadow rounded border border-1 border-success mb-3 table-responsive">
+                <table class="table">
+                    <h3>Mes produits en tableau</h3>
+                    <?php
+                    if (!empty($myProduits) && isset($myProduits)) {
+                        $fields = array_keys($myProduits[0]);
+                        foreach ($fields as $field) {
+                            $label = preg_replace('/[^a-zA-Z0-9]/', ' ', $field);
+                    ?>                
+                    <tr>
+                        <th><?= ucfirst($label)?></th>
+                        <?php foreach ($myProduits as $mP) { ?>
+                        <td>
+                            <?php if ($field === 'image') { ?>
+                                <img width="100" src="<?= BASE_URL . $mP[$field] ?>">
+                            <?php } else { ?>
+                                <?= $mP[$field]; ?>
+                            <?php } ?>
+                        </td>
+                        <?php } ?>
+                    </tr>
+                    <?php }
+                    } else { ?>
+                        <tr>
+                            <td>
+                            <div class="alert alert-warning alert-dismissible fade show" data-bs-dismiss="3000" role="alert">Vous n'avez pas encore ajouté de produit</div>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                </table>
+            </div>      -->
+
+              <!-- <table class="table mt-2">
+                    <?php 
+                    if (!empty($myImages[0])) {
+                        $fields = array_keys($myImages[0]);
+                        foreach ($fields as $field) {
+                            $label = preg_replace('/[^a-zA-Z0-9]/', ' ', $field);
+                    ?>                
+                    <tr>
+                        <th><?= ucfirst($label)?></th>
+                        <?php foreach ($myImages as $mI) { ?>
+                        <td>
+                            <?php if ($field === 'image') { ?>
+                                <img width="100" src="<?= BASE_URL . $mI[$field] ?>">
+                            <?php } else { ?>
+                                <?= $mI[$field]; ?>
+                            <?php } ?>
+                        </td>
+                        <?php } ?>
+                    </tr>
+                    <?php } 
+                } else { ?>
+                <tr>
+                    <td><div class="alert alert-warning alert-dismissible fade show" data-bs-dismiss="3000" role="alert">Vous n'avez pas encore ajouté d'image</div></td>
+                </tr>
+                <?php } ?>
+                </table> -->

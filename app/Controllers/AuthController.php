@@ -32,8 +32,8 @@ class AuthController
 
             $value = User::verifyEmail($email);
 
-            if (is_array($value) && count($value) == 0) {
-                header("Location: " . BASE_URL . "login?erreur=L'utilisateur n'existe pas.");
+            if ($value == 0) {
+                header("Location: " . BASE_URL . "auth/login?erreur=L'utilisateur n'existe pas.");
                 exit();
             }
             var_dump($value);
@@ -54,7 +54,7 @@ class AuthController
                 header ("Location: " . BASE_URL . "user/dashboard?success=Connexion réussi !");
                 exit;
             } else {
-                header("Location: " . BASE_URL . "login?erreur=Le mot de passe est incorrecte !");
+                header("Location: " . BASE_URL . "auth/login?erreur=Le mot de passe est incorrecte !");
                 exit;
             }
         }
