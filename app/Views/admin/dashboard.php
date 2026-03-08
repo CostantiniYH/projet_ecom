@@ -1,4 +1,4 @@
-<div class="container mt-2">
+<div class="container">
     <p class="mt-2 border border-2 border-success p-3 rounded mb-3">Bonjour Administrateur : 
         <?= $_SESSION['user']['email']; ?></p>
     <h1 class="shadow rounded p-4 border-start border-end border-2 border-success">Dashboard admin de : 

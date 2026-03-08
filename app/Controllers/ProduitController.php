@@ -20,14 +20,15 @@ class ProduitController
 
         $navbar = buildNavbar('produits');
 
-        $id = $_GET['id'] ?? null;
+        $_SESSION['flash']['id_categorie'] = $_GET['id'] ?? null;
+        $id =  $_SESSION['flash']['id_categorie'];
         $produits = getAllWhere ($pdo, 't_produits', 'deleted_at IS NULL AND quantite > ?', 0);
         $produitID = findBy ($pdo, 't_produits', 'id_categorie', $id); 
         
         $titre = "Produits";
 
         ob_start(); 
-        require dirname(__DIR__) . '/Views//produits/index.produits.php';
+        require dirname(__DIR__) . '/Views/produits/index.produits.php';
         $content = ob_get_clean();
         require dirname(__DIR__) . '/Views/partials/layout.php';
     }

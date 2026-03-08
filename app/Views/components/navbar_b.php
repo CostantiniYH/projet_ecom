@@ -34,6 +34,7 @@
                             <a class="dropdown-item bi bi-motherboard" data-bs-toggle="tooltip" data-bs-placement="bottom" 
                             data-bs-custom-class="super-tooltip-warning" title="Tableau admin" href="<?= BASE_URL ?>admin/dashboard"></a>
                         </li>
+                        <?php endif ?>
                         <li>
                             <a class="dropdown-item bi bi-kanban" data-bs-toggle="tooltip" data-bs-placement="bottom" 
                             data-bs-custom-class="super-tooltip-warning" title="Tableau de bord" href="<?= BASE_URL ?>user/dashboard"></a>
