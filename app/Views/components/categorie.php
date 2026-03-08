@@ -23,7 +23,7 @@
      alt="..." style="width: 20rem; height: 150px; overflow: hidden;" usemap="#map<?= $categorie['id']; ?>">-->
 
     <map name="map<?= $categorie['id']; ?>">
-        <area shape="rect" coords="0,0,350,400" href="<?= BASE_URL ?>produit/liste?id=<?= $categorie['id']; ?>">
+        <area shape="rect" coords="0,0,350,400" href="<?= BASE_URL ?>produit/liste/<?= $categorie['id']; ?>">
     </map>
     <div class="card-body">
         <h5 class="card-title mt-2"><?= $categorie['nom'] ?></h5>

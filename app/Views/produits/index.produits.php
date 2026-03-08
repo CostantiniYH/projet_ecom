@@ -3,7 +3,7 @@
         <?php
             $categorie = findBy2 ($pdo, 'nom, id', 't_categories', 'id',$id);
             
-            if (!empty($_GET['id'])) {
+            if (!empty($id)) {
                     echo 'Produits ' . htmlspecialchars($categorie['nom']);
                    // echo ' (ID: ' . htmlspecialchars($categorie['id']) . ')';
             } else {
@@ -13,7 +13,7 @@
     </h1>     
     <div class="row gy-5 text-center">
         <?php 
-            if (!empty($_GET['id'])) {
+            if (!empty($id)) {
 
                 foreach ($produitID as $row => $value) {
                 ?>

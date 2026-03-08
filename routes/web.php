@@ -15,6 +15,7 @@ Route::get("/categorie/{id}", "CategorieController@show");
 
 
 Route::get("/produit/liste", "ProduitController@index");
+Route::get("/produit/liste/{id}", "ProduitController@index2");
 Route::get("/produit/formulaire", "ProduitController@create");
 Route::post("/produit/traitement", "ProduitController@store");
 Route::get("/produit/edition", "ProduitController@edit");
