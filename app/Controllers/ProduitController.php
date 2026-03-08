@@ -26,7 +26,7 @@ class ProduitController
         $produitID = findBy ($pdo, 't_produits', 'id_categorie', $id); 
         
         $titre = "Produits";
-
+        var_dump($id);
         ob_start(); 
         require dirname(__DIR__) . '/Views/produits/index.produits.php';
         $content = ob_get_clean();
