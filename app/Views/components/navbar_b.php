@@ -27,9 +27,16 @@
                         Admin
                     </a>
                     <ul class="dropdown-menu">
+                        <?php
+                            if (isAdmin()):
+                        ?>
+                        <li>
+                            <a class="dropdown-item bi bi-motherboard" data-bs-toggle="tooltip" data-bs-placement="bottom" 
+                            data-bs-custom-class="super-tooltip-warning" title="Tableau admin" href="<?= BASE_URL ?>admin/dashboard"></a>
+                        </li>
                         <li>
                             <a class="dropdown-item bi bi-kanban" data-bs-toggle="tooltip" data-bs-placement="bottom" 
-                            data-bs-custom-class="super-tooltip-warning" title="Tableau de bord" href="<?= BASE_URL ?>admin/dashboard"></a>
+                            data-bs-custom-class="super-tooltip-warning" title="Tableau de bord" href="<?= BASE_URL ?>user/dashboard"></a>
                         </li>
                         <li>
                             <a class="dropdown-item bi bi-grid-3x3-gap-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" 
