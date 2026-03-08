@@ -1,7 +1,7 @@
 <div class="container mb-5 mt-5">
     <section class="row mb-4 gap-4">
         <div class="col-md">
-            <form action="<?= BASE_URL ?>categorie/traitement" method="post" class=" mb-5 p-2 shadow-lg
+            <form action="<?= BASE_URL ?>categorie/traitement" method="post" class="h-100 mb-5 p-2 shadow-lg
             rounded-4 border border-1 border-success" data-aos="zoom-in" enctype="multipart/form-data">
 
                 <?php if ($id) { ?>
@@ -28,7 +28,7 @@
 
 
         <div class="col-md">
-            <div class="shadow rounded-4 p-3 border border-1 border-primary">
+            <div class="shadow rounded-4 p-3 border border-1 border-primary h-100">
                 <h3 class="text-center">Catégories existantes</h3>
                 <div class="row">
                     <?php foreach ($categories as $categorie) { ?>
