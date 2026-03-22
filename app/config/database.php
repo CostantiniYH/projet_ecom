@@ -8,6 +8,7 @@ if (!defined('BASE_URL')) {
        if ($host === 'localhost' || $host === '127.0.0.1') {
         define('BASE_URL', $protocol . '://' . $host . '/projet_yhc/public/');
         } else {
+            // nom de domaine
             define('BASE_URL', $protocol . '://' . $host . '/');
         }
 }
